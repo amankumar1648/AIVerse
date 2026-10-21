@@ -2,23 +2,20 @@ import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let tools = [];
+  const tools: { slug: string; updatedAt: Date }[] = [];
 
   try {
-    tools = await prisma.tool.findMany({
+    const data = await prisma.tool.findMany({
       select: {
         slug: true,
         updatedAt: true,
       },
     });
-  } catch (error) {
-    console.log("Database not available during build");
-  }
 
-  const toolUrls = tools.map((tool) => ({
-    url: `https://aiverse.com/tools/${tool.slug}`,
-    lastModified: tool.updatedAt,
-  }));
+    tools.push(...data);
+  } catch (error) {
+    console.log("Database unavailable during build");
+  }
 
   return [
     {
@@ -29,6 +26,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: "https://aiverse.com/tools",
       lastModified: new Date(),
     },
-    ...toolUrls,
+    ...tools.map((tool) => ({
+      url: `https://aiverse.com/tools/${tool.slug}`,
+      lastModified: tool.updatedAt,
+    })),
   ];
 }
