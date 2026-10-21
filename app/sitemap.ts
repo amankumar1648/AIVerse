@@ -3,8 +3,13 @@ import { prisma } from "@/lib/prisma";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
-  const tools = await prisma.tool.findMany();
+ let tools = [];
 
+try {
+  tools = await prisma.tool.findMany();
+} catch (error) {
+  console.log("Database not available during build");
+}
 
   return [
     {
