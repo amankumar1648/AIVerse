@@ -3,9 +3,15 @@ node_modules
 .next
 .DS_Store
 node_modules
+node_modules
+.next
+.env
+prisma/dev.db
+.DS_Store
 .env
 
 /generated/prisma
 
 .next
 prisma/dev.db
+
