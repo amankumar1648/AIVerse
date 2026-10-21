@@ -1,0 +1,48 @@
+  const tools = await prisma.tool.findMany({
+  where: {
+    category: {
+      contains: slug,
+    },
+  },
+});
+
+
+  if (tools.length === 0) {
+    notFound();
+  }
+
+
+  return (
+    <main className="container-custom py-16">
+
+      <h1 className="text-5xl font-bold mb-4">
+        {categoryName} AI Tools
+      </h1>
+
+      <p className="text-gray-600 mb-10">
+        Explore the best AI tools for {categoryName}.
+      </p>
+
+
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+        {tools.map((tool) => (
+          <ToolCard
+            key={tool.id}
+            name={tool.name}
+            slug={tool.slug}
+            category={tool.category}
+            description={tool.description}
+            image={tool.image}
+            rating={tool.rating}
+            pricing={tool.pricing}
+            website={tool.website}
+          />
+        ))}
+
+      </div>
+
+    </main>
+  );
+}
+

@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/blog/layout,_N_T_/blog/page,_N_T_/blog"
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/67dde65c7d82e3f1d47b7bc8524f82985b53205b277d3ef0e27b09d3fb87251c/$/blog",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/blog/page"
+    },
+    "isFallback": false
+  }
+}

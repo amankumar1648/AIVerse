@@ -1,0 +1,131 @@
+import { prisma } from "@/lib/prisma";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import SearchBar from "@/components/SearchBar";
+import ToolCard from "@/components/ToolCard";
+import Footer from "@/components/Footer";
+
+
+const categories = [
+  "Writing",
+  "Image",
+  "Video",
+  "Coding",
+  "Marketing",
+  "Music",
+  "Voice",
+  "Education",
+];
+
+export default async function HomePage() {
+  const featuredTools = await prisma.tool.findMany();
+
+  return (
+    <>
+      <Navbar />
+
+      <main>
+        <Hero />
+
+        <section className="container-custom py-10">
+        <SearchBar
+  tools={featuredTools.map((tool) => ({
+    id: tool.id,
+    name: tool.name,
+    slug: tool.slug,
+    category: tool.category,
+  }))}
+/>
+        </section>
+
+        <section className="container-custom py-14">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-4xl font-bold">
+                Featured AI Tools
+              </h2>
+
+              <p className="text-gray-500 mt-2">
+                Discover the most popular AI tools used worldwide.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {featuredTools.map((tool) => (
+              <ToolCard
+  key={tool.id}
+  name={tool.name}
+  slug={tool.slug}
+  category={tool.category}
+  description={tool.description}
+  rating={tool.rating}
+  image={tool.image}
+  pricing={tool.pricing}
+  website={tool.website}
+/><ToolCard
+  
+key={tool.id}
+  name={tool.name}
+  slug={tool.slug}
+  category={tool.category}
+  description={tool.description}
+  rating={tool.rating}
+  pricing={tool.pricing}
+  website={tool.website}
+  image={tool.image}
+/>
+            ))}
+          </div>
+        </section>
+
+        <section className="container-custom py-14">
+          <h2 className="text-4xl font-bold mb-8">
+            Browse Categories
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {categories.map((category) => (
+              <div
+                key={category}
+                className="card text-center cursor-pointer hover:shadow-xl"
+              >
+                <h3 className="font-semibold text-lg">
+                  {category}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="container-custom py-16">
+          <div className="rounded-3xl bg-gradient-to-r from-blue-600 to-purple-700 text-white p-12 text-center">
+            <h2 className="text-5xl font-bold">
+              Stay Updated
+            </h2>
+
+            <p className="mt-4 text-lg opacity-90">
+              Join thousands of readers receiving the latest AI news and tools.
+            </p>
+
+            <form className="mt-8 flex flex-col md:flex-row gap-4 justify-center">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="rounded-xl px-5 py-4 text-black w-full md:w-96 outline-none"
+              />
+
+              <button
+                className="bg-black text-white rounded-xl px-8 py-4 font-semibold hover:opacity-90"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </>
+  );
+}

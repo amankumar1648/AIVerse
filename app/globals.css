@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -----------------------------
+   CSS Variables
+----------------------------- */
+
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+
+  --primary: #2563eb;
+  --secondary: #7c3aed;
+  --accent: #06b6d4;
+
+  --muted: #f3f4f6;
+  --border: #e5e7eb;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+
+  --primary: #3b82f6;
+  --secondary: #8b5cf6;
+  --accent: #22d3ee;
+
+  --muted: #1e293b;
+  --border: #334155;
+}
+
+/* -----------------------------
+   Base
+----------------------------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+/* -----------------------------
+   Scrollbar
+----------------------------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+/* -----------------------------
+   Links
+----------------------------- */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* -----------------------------
+   Buttons
+----------------------------- */
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white transition-all duration-300;
+  background: var(--primary);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-xl border px-6 py-3 font-semibold transition-all duration-300;
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--muted);
+}
+
+/* -----------------------------
+   Cards
+----------------------------- */
+
+.card {
+  @apply rounded-2xl border p-6 shadow-sm transition-all duration-300;
+  border-color: var(--border);
+  background: white;
+}
+
+.dark .card {
+  background: #1e293b;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* -----------------------------
+   Glass Effect
+----------------------------- */
+
+.glass {
+  backdrop-filter: blur(16px);
+  background: rgba(255,255,255,.65);
+  border: 1px solid rgba(255,255,255,.3);
+}
+
+.dark .glass {
+  background: rgba(15,23,42,.65);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+/* -----------------------------
+   Container
+----------------------------- */
+
+.container-custom {
+  width: min(1280px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+/* -----------------------------
+   Selection
+----------------------------- */
+
+::selection {
+  background: var(--primary);
+  color: white;
+}

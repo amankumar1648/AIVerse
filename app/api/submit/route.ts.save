@@ -1,0 +1,170 @@
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+
+// GET ALL SUBMISSIONS
+export async function GET() {
+
+  const submissions = await prisma.submission.findMany({
+    orderBy:{
+      createdAt:"desc"
+    }
+  });
+
+  return NextResponse.json(submissions);
+
+}
+
+
+
+// CREATE SUBMISSION
+export async function POST(req: Request) {
+
+  const body = await req.json();
+
+
+  const submission = await prisma.submission.create({
+
+        data:{
+      name: body.name,
+      slug: body.slug || "",
+      category: body.category || "",
+      description: body.description || "",
+      image: body.image || "",
+      rating: Number(body.rating) || 4.5,
+      pricing: body.pricing || "",
+      website: body.website || "",
+      status:"pending"
+    }
+
+  });
+
+
+  return NextResponse.json(submission);
+
+}
+
+
+
+// APPROVE SUBMISSION
+export async function PUT(req: Request) {
+
+  const { id } = await req.json();
+
+
+  const submission = await prisma.submission.findUnique({
+
+    where:{
+      id:Number(id)
+    }
+
+  });
+
+
+
+  if(!submission){
+
+    return NextResponse.json(
+      {error:"Submission not found"},
+      {status:404}
+    );
+
+  }
+
+
+
+  const slug =
+    submission.slug ||
+    submission.name
+    .toLowerCase()
+    .replaceAll(" ","-");
+
+
+
+  const existingTool = await prisma.tool.findUnique({
+
+    where:{
+      slug:slug
+    }
+
+  });
+
+
+
+  if(!existingTool){
+
+    await prisma.tool.create({
+
+      data:{
+
+        name:submission.name,
+
+        slug:slug,
+
+        category:submission.category || "AI",
+
+        description:submission.description || "",
+
+        image:submission.image || "",
+
+        rating:submission.rating || 4.5,
+
+        pricing:submission.pricing || "",
+
+        website:submission.website || ""
+
+      }
+
+    });
+
+  }
+
+
+
+  await prisma.submission.update({
+
+    where:{
+      id:Number(id)
+    },
+
+    data:{
+      status:"approved"
+    }
+
+  });
+
+
+
+  return NextResponse.json({
+
+    message:"Approved and added to tools"
+
+  });
+
+}
+
+
+
+// DELETE SUBMISSION
+export async function DELETE(req: Request) {
+
+  const { id } = await req.json();
+
+
+  await prisma.submission.delete({
+
+    where:{
+      id:Number(id)
+    }
+
+  });
+
+
+  return NextResponse.json({
+
+    message:"Deleted successfully"
+
+  });
+
+}
+

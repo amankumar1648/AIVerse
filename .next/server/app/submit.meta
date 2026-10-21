@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/submit/layout,_N_T_/submit/page,_N_T_/submit"
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/14c404bcc422dccce72da3dfe8120e986e7869235619b410b5c2eb643e4f4fd7/$/submit",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/submit/page"
+    },
+    "isFallback": false
+  }
+}
