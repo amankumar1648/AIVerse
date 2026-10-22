@@ -7,12 +7,14 @@ export async function POST(req: Request) {
 
   try {
 
+
     const { email, password } = await req.json();
+
 
 
     const user = await prisma.user.findUnique({
 
-      where: {
+      where:{
         email,
       },
 
@@ -20,14 +22,14 @@ export async function POST(req: Request) {
 
 
 
-    if (!user) {
+    if(!user){
 
       return NextResponse.json(
         {
-          error: "User not found",
+          error:"User not found",
         },
         {
-          status: 404,
+          status:404,
         }
       );
 
@@ -45,38 +47,44 @@ export async function POST(req: Request) {
 
 
 
-    if (!passwordMatch) {
+    if(!passwordMatch){
 
       return NextResponse.json(
+
         {
-          error: "Invalid password",
+          error:"Invalid password",
         },
+
         {
-          status: 401,
+          status:401,
         }
+
       );
 
     }
 
 
 
+
     const response = NextResponse.json({
 
-      success: true,
+      success:true,
 
-      message: "Login successful",
+      message:"Login successful",
 
-      user: {
+      user:{
 
-        id: user.id,
+        id:user.id,
 
-        email: user.email,
+        email:user.email,
 
       },
 
     });
 
 
+
+    // User session
 
     response.cookies.set(
 
@@ -86,13 +94,15 @@ export async function POST(req: Request) {
 
       {
 
-        httpOnly: false,
+        httpOnly:true,
 
-        maxAge: 60 * 60 * 24 * 7,
+        secure:false,
 
-        path: "/",
+        sameSite:"lax",
 
-        sameSite: "lax",
+        maxAge:60 * 60 * 24 * 7,
+
+        path:"/",
 
       }
 
@@ -100,10 +110,50 @@ export async function POST(req: Request) {
 
 
 
+
+    // Only your admin account gets admin cookie
+
+    if(email === "amanchhapola395@gmail.com"){
+
+
+      response.cookies.set(
+
+        "admin",
+
+        "true",
+
+        {
+
+          httpOnly:false,
+
+          secure:false,
+
+          sameSite:"lax",
+
+          maxAge:60 * 60 * 24 * 7,
+
+          path:"/",
+
+        }
+
+      );
+
+
+    } else {
+
+
+      response.cookies.delete("admin");
+
+
+    }
+
+
+
     return response;
 
 
-  } catch (error) {
+
+  } catch(error){
 
 
     console.error(error);
@@ -112,11 +162,11 @@ export async function POST(req: Request) {
     return NextResponse.json(
 
       {
-        error: "Login failed",
+        error:"Login failed",
       },
 
       {
-        status: 500,
+        status:500,
       }
 
     );

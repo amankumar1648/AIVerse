@@ -4,7 +4,8 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
 
-  const isAdminPage =
+
+  const isAdminRoute =
     request.nextUrl.pathname.startsWith("/admin");
 
 
@@ -12,7 +13,7 @@ export function middleware(request: NextRequest) {
     request.cookies.get("admin");
 
 
-  if (isAdminPage && adminCookie?.value !== "true") {
+  if(isAdminRoute && adminCookie?.value !== "true"){
 
     return NextResponse.redirect(
       new URL("/login", request.url)
@@ -27,8 +28,10 @@ export function middleware(request: NextRequest) {
 
 
 export const config = {
-  matcher: [
+
+  matcher:[
     "/admin/:path*",
   ],
+
 };
 

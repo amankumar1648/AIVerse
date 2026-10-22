@@ -1,36 +1,37 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 export default function LoginPage() {
 
 
-  const [email, setEmail] = useState("");
-
-  const [password, setPassword] = useState("");
-
-  const [message, setMessage] = useState("");
+  const router = useRouter();
 
 
+  const [email,setEmail] = useState("");
+
+  const [password,setPassword] = useState("");
+
+  const [message,setMessage] = useState("");
 
 
-  async function handleLogin(e: React.FormEvent) {
+
+  async function handleLogin(e:React.FormEvent){
 
     e.preventDefault();
 
 
-    const res = await fetch("/api/login", {
+    const res = await fetch("/api/login",{
 
-      method: "POST",
+      method:"POST",
 
-      headers: {
-
-        "Content-Type": "application/json",
-
+      headers:{
+        "Content-Type":"application/json",
       },
 
-      body: JSON.stringify({
+      body:JSON.stringify({
 
         email,
 
@@ -45,19 +46,39 @@ export default function LoginPage() {
     const data = await res.json();
 
 
+
     if(res.ok){
+
 
       setMessage("Login successful");
 
-    } else {
 
-      setMessage(data.error || "Login failed");
+      if(data.user.role === "ADMIN"){
+
+        router.push("/admin");
+
+      }else{
+
+        router.push("/");
+
+      }
+
+
+      router.refresh();
+
+
+    }else{
+
+
+      setMessage(
+        data.error || "Login failed"
+      );
+
 
     }
 
 
   }
-
 
 
 

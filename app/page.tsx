@@ -6,8 +6,8 @@ import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";
 import FeaturedTools from "@/components/FeaturedTools";
 import ToolCard from "@/components/ToolCard";
-
-
+import Link from "next/link";
+import CategorySection from "@/components/CategorySection";
 export default async function HomePage() {
 
 
@@ -49,7 +49,11 @@ const allTools = await prisma.tool.findMany({
     rating: "desc",
   },
 });
-
+const categories = Array.from(
+  new Set(
+    tools.map((tool) => tool.category)
+  )
+);
 
   return (
 
@@ -98,20 +102,24 @@ const allTools = await prisma.tool.findMany({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
 
-{allTools.map((tool)=>(
+  {allTools.map((tool)=>(
+    <ToolCard
+      key={tool.id}
+      tool={tool}
+    />
+  ))}
+
+</div>
 
 
-            <ToolCard
+<div className="text-center mt-10">
 
-              key={tool.id}
-
-              tool={tool}
-
-            />
-
-
-          ))}
-
+  <Link
+    href="/tools"
+    className="inline-block bg-black text-white px-8 py-3 rounded-xl hover:opacity-80"
+  >
+    View All AI Tools →
+  </Link>
 
 
         </div>
@@ -119,7 +127,7 @@ const allTools = await prisma.tool.findMany({
 
       </section>
 
-
+<CategorySection categories={categories} />
     </main>
 
   );

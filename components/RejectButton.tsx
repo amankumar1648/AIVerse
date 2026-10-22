@@ -13,35 +13,16 @@ export default function RejectButton({id}:{id:number}) {
   async function reject(){
 
 
-    const confirmReject = confirm(
-
-      "Reject this submission?"
-
-    );
-
-
-    if(!confirmReject){
-
-      return;
-
-    }
-
-
-
     await fetch("/api/admin/submissions",{
 
       method:"DELETE",
 
       headers:{
-
         "Content-Type":"application/json",
-
       },
 
       body:JSON.stringify({
-
         id,
-
       }),
 
     });
@@ -65,7 +46,7 @@ export default function RejectButton({id}:{id:number}) {
 
     >
 
-      Reject
+      Reject ❌
 
     </button>
 

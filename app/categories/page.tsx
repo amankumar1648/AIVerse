@@ -11,16 +11,10 @@ export default async function CategoriesPage() {
 
 
   const categories = Array.from(
-
-    new Set(
-
-      tools.map((tool) => tool.category)
-
-    )
-
-  );
-
-
+  new Set(
+    tools.map((tool) => tool.category.trim())
+  )
+);
 
   return (
 

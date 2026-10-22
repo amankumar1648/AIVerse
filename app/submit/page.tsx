@@ -6,15 +6,17 @@ import { useState } from "react";
 export default function SubmitPage() {
 
 
-  const [image,setImage] = useState("");
+  const [image, setImage] = useState("");
 
-  const [rating,setRating] = useState("");
+  const [rating, setRating] = useState("");
 
-  const [message,setMessage] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [imageError, setImageError] = useState(false);
 
 
 
-  async function submitTool(e:React.FormEvent<HTMLFormElement>) {
+  async function submitTool(e: React.FormEvent<HTMLFormElement>) {
 
 
     e.preventDefault();
@@ -23,12 +25,11 @@ export default function SubmitPage() {
     const form = e.currentTarget;
 
 
-
     const ratingNumber = Number(rating);
 
 
 
-    if(ratingNumber < 0 || ratingNumber > 5){
+    if (ratingNumber < 0 || ratingNumber > 5) {
 
       setMessage("❌ Rating must be between 0 and 5");
 
@@ -41,56 +42,55 @@ export default function SubmitPage() {
     const data = {
 
 
-      name:(form.elements.namedItem("name") as HTMLInputElement).value,
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
 
 
-      slug:(form.elements.namedItem("slug") as HTMLInputElement).value,
+      slug: (form.elements.namedItem("slug") as HTMLInputElement).value,
 
 
-      category:(form.elements.namedItem("category") as HTMLSelectElement).value,
+      category: (form.elements.namedItem("category") as HTMLSelectElement).value,
 
 
-      description:(form.elements.namedItem("description") as HTMLTextAreaElement).value,
+      description: (form.elements.namedItem("description") as HTMLTextAreaElement).value,
 
 
       image,
 
 
-      rating:ratingNumber,
+      rating: ratingNumber,
 
 
-      pricing:(form.elements.namedItem("pricing") as HTMLInputElement).value,
+      pricing: (form.elements.namedItem("pricing") as HTMLInputElement).value,
 
 
-      website:(form.elements.namedItem("website") as HTMLInputElement).value,
+      website: (form.elements.namedItem("website") as HTMLInputElement).value,
 
 
     };
 
 
 
-    const res = await fetch("/api/submit",{
+    const res = await fetch("/api/submit", {
 
 
-      method:"POST",
+      method: "POST",
 
 
-      headers:{
+      headers: {
 
-
-        "Content-Type":"application/json",
+        "Content-Type": "application/json",
 
       },
 
 
-      body:JSON.stringify(data),
+      body: JSON.stringify(data),
 
 
     });
 
 
 
-    if(res.ok){
+    if (res.ok) {
 
 
       setMessage("✅ Submitted! Waiting for admin approval.");
@@ -102,8 +102,10 @@ export default function SubmitPage() {
 
       setRating("");
 
+      setImageError(false);
 
-    }else{
+
+    } else {
 
 
       setMessage("❌ Submission failed");
@@ -116,7 +118,9 @@ export default function SubmitPage() {
 
 
 
+
   return (
+
 
     <main className="min-h-screen p-8">
 
@@ -139,6 +143,7 @@ export default function SubmitPage() {
           className="space-y-4"
 
         >
+
 
 
           <input
@@ -189,7 +194,9 @@ export default function SubmitPage() {
 
             <option>Education</option>
 
+
           </select>
+
 
 
 
@@ -207,13 +214,20 @@ export default function SubmitPage() {
 
 
 
+
           <input
 
             placeholder="Image URL"
 
             value={image}
 
-            onChange={(e)=>setImage(e.target.value)}
+            onChange={(e)=>{
+
+              setImage(e.target.value);
+
+              setImageError(false);
+
+            }}
 
             className="border p-3 w-full rounded"
 
@@ -221,19 +235,45 @@ export default function SubmitPage() {
 
 
 
+
           {image && (
 
-            <img
+            <div className="mt-3">
 
-              src={image}
 
-              alt="Preview"
+              {!imageError ? (
 
-              className="w-32 h-32 object-cover rounded"
+                <img
 
-            />
+                  src={image}
+
+                  alt="Preview"
+
+                  onError={()=>setImageError(true)}
+
+                  className="w-32 h-32 object-contain rounded border"
+
+                />
+
+
+              ) : (
+
+
+                <p className="text-red-500">
+
+                  ❌ Invalid image URL
+
+                </p>
+
+
+              )}
+
+
+            </div>
+
 
           )}
+
 
 
 
@@ -255,6 +295,7 @@ export default function SubmitPage() {
 
 
 
+
           <input
 
             name="pricing"
@@ -264,6 +305,7 @@ export default function SubmitPage() {
             className="border p-3 w-full rounded"
 
           />
+
 
 
 
@@ -281,6 +323,7 @@ export default function SubmitPage() {
 
 
 
+
           <button
 
             className="bg-blue-600 text-white px-6 py-3 rounded-xl"
@@ -292,7 +335,9 @@ export default function SubmitPage() {
           </button>
 
 
+
         </form>
+
 
 
 
@@ -303,10 +348,12 @@ export default function SubmitPage() {
         </p>
 
 
+
       </div>
 
 
     </main>
+
 
   );
 

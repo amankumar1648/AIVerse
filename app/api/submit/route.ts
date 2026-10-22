@@ -1,65 +1,146 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { cookies } from "next/headers";
 
 
 // GET ALL SUBMISSIONS
 export async function GET() {
+
   try {
+
     const submissions = await prisma.submission.findMany({
+
       orderBy: {
         createdAt: "desc",
       },
+
     });
+
 
     return NextResponse.json(submissions);
 
+
   } catch (error) {
+
     console.error(error);
 
+
     return NextResponse.json(
-      { error: "Failed to fetch submissions" },
-      { status: 500 }
+      {
+        error: "Failed to fetch submissions",
+      },
+      {
+        status: 500,
+      }
     );
+
   }
+
 }
 
 
 
 // CREATE SUBMISSION
 export async function POST(req: Request) {
+
   try {
+
+
+    const cookieStore = await cookies();
+
+
+    const session = cookieStore.get("session");
+
+
+    if (!session) {
+
+      return NextResponse.json(
+        {
+          error: "Please login first",
+        },
+        {
+          status: 401,
+        }
+      );
+
+    }
+
+
+    const userId = Number(session.value);
+
+
     const body = await req.json();
 
+
+
     const submission = await prisma.submission.create({
+
       data: {
+
+        userId,
+
+
         name: body.name,
+
+
         slug:
           body.slug ||
           body.name
             .toLowerCase()
             .replaceAll(" ", "-"),
 
+
         category: body.category || "",
+
+
         description: body.description || "",
+
+
         image: body.image || "",
+
+
         rating: Number(body.rating) || 4.5,
+
+
         pricing: body.pricing || "",
+
+
         website: body.website || "",
+
+
         status: "pending",
+
       },
+
     });
+
 
 
     return NextResponse.json(submission);
 
+
+
   } catch (error) {
+
+
     console.error(error);
 
+
     return NextResponse.json(
-      { error: "Submission failed" },
-      { status: 500 }
+
+      {
+        error: "Submission failed",
+      },
+
+      {
+        status: 500,
+      }
+
     );
+
+
   }
+
 }
 
 
@@ -70,26 +151,29 @@ export async function PUT(req: Request) {
 
   try {
 
+
     const { id } = await req.json();
+
 
 
     const submission = await prisma.submission.findUnique({
 
-      where:{
-        id:Number(id),
+      where: {
+        id: Number(id),
       },
 
     });
 
 
-    if(!submission){
+
+    if (!submission) {
 
       return NextResponse.json(
         {
-          error:"Submission not found"
+          error: "Submission not found",
         },
         {
-          status:404
+          status:404,
         }
       );
 
@@ -97,49 +181,43 @@ export async function PUT(req: Request) {
 
 
 
-    const slug =
-      submission.slug ||
-      submission.name
-      .toLowerCase()
-      .replaceAll(" ","-");
-
-
-
-    const existingTool = await prisma.tool.findUnique({
+    const tool = await prisma.tool.findUnique({
 
       where:{
-        slug,
+        slug: submission.slug,
       },
 
     });
 
 
 
-    if(!existingTool){
+    if (!tool) {
+
 
       await prisma.tool.create({
 
-        data:{
+        data: {
 
-          name:submission.name,
+          name: submission.name,
 
-          slug,
+          slug: submission.slug,
 
-          category:submission.category,
+          category: submission.category,
 
-          description:submission.description,
+          description: submission.description,
 
-          image:submission.image,
+          image: submission.image,
 
-          rating:submission.rating,
+          rating: submission.rating,
 
-          pricing:submission.pricing,
+          pricing: submission.pricing,
 
-          website:submission.website,
+          website: submission.website,
 
         },
 
       });
+
 
     }
 
@@ -169,7 +247,8 @@ export async function PUT(req: Request) {
 
 
 
-  } catch(error){
+  } catch(error) {
+
 
     console.error(error);
 
@@ -177,11 +256,11 @@ export async function PUT(req: Request) {
     return NextResponse.json(
 
       {
-        error:"Approval failed"
+        error:"Approval failed",
       },
 
       {
-        status:500
+        status:500,
       }
 
     );
@@ -192,13 +271,15 @@ export async function PUT(req: Request) {
 
 
 
-
 // DELETE SUBMISSION
-export async function DELETE(req: Request){
+export async function DELETE(req: Request) {
 
-  try{
 
-    const {id}=await req.json();
+  try {
+
+
+    const { id } = await req.json();
+
 
 
     await prisma.submission.delete({
@@ -210,6 +291,7 @@ export async function DELETE(req: Request){
     });
 
 
+
     return NextResponse.json({
 
       success:true,
@@ -217,7 +299,9 @@ export async function DELETE(req: Request){
     });
 
 
-  }catch(error){
+
+  } catch(error) {
+
 
     console.error(error);
 
@@ -225,11 +309,11 @@ export async function DELETE(req: Request){
     return NextResponse.json(
 
       {
-        error:"Delete failed"
+        error:"Delete failed",
       },
 
       {
-        status:500
+        status:500,
       }
 
     );

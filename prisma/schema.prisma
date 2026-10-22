@@ -2,38 +2,39 @@ generator client {
   provider = "prisma-client-js"
 }
 
+
 datasource db {
-provider = "postgresql"
-  url = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
+
 
 model Tool {
-  id          Int      @id @default(autoincrement())
-  name        String
-  slug        String   @unique
-  category    String
-  description String
-  image       String
-  rating      Float
-  pricing     String
-  website     String
 
-favorites Favorite[]
+  id Int @id @default(autoincrement())
+
+  name String
+
+  slug String @unique
+
+  category String
+
+  description String
+
+  image String
+
+  rating Float
+
+  pricing String
+
+  website String
+
+
+  favorites Favorite[]
 
 }
-model Submission {
-  id          Int      @id @default(autoincrement())
-  name        String
-  slug        String
-  category    String
-  description String
-  image       String
-  rating      Float
-  pricing     String
-  website     String
-  status      String   @default("pending")
-  createdAt   DateTime @default(now())
-}
+
+
 
 model User {
 
@@ -43,11 +44,19 @@ model User {
 
   password String
 
+  role String @default("USER")
+
   createdAt DateTime @default(now())
 
-favorites Favorite[]
+
+  favorites Favorite[]
+
+  submissions Submission[]
 
 }
+
+
+
 model Favorite {
 
   id Int @id @default(autoincrement())
@@ -57,13 +66,46 @@ model Favorite {
   toolId Int
 
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields:[userId], references:[id])
 
-  tool Tool @relation(fields: [toolId], references: [id])
+  tool Tool @relation(fields:[toolId], references:[id])
 
 
   createdAt DateTime @default(now())
 
 }
 
+
+
+model Submission {
+
+  id Int @id @default(autoincrement())
+
+  name String
+
+  slug String
+
+  category String
+
+  description String
+
+  image String
+
+  rating Float
+
+  pricing String
+
+  website String
+
+  status String @default("pending")
+
+  userId Int
+
+
+  user User @relation(fields:[userId], references:[id])
+
+
+  createdAt DateTime @default(now())
+
+}
 
