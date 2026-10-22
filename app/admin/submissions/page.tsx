@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
 import ApproveButton from "@/components/ApproveButton";
 import RejectButton from "@/components/RejectButton";
@@ -92,5 +93,6 @@ export default async function SubmissionsPage() {
   );
 
 }
+
 
 
