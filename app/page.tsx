@@ -21,8 +21,34 @@ export default async function HomePage() {
 
 
 
-  const featuredTools = tools.slice(0,4);
+const featuredTools = await prisma.tool.findMany({
+  where: {
+    rating: {
+      gte: 4.7,
+    },
+  },
+  orderBy: {
+    rating: "desc",
+  },
+  take: 4,
+});
 
+
+const featuredIds = featuredTools.map(
+  (tool) => tool.id
+);
+
+
+const allTools = await prisma.tool.findMany({
+  where: {
+    id: {
+      notIn: featuredIds,
+    },
+  },
+  orderBy: {
+    rating: "desc",
+  },
+});
 
 
   return (
@@ -72,7 +98,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
 
-          {tools.map((tool)=>(
+{allTools.map((tool)=>(
 
 
             <ToolCard
@@ -99,4 +125,5 @@ export default async function HomePage() {
   );
 
 }
+
 
