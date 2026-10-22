@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import FavoriteButton from "@/components/FavoriteButton";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
@@ -175,6 +176,4 @@ export default async function ToolPage({ params }: PageProps) {
   );
 
 }
-
-
 
