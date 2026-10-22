@@ -1,118 +1,72 @@
 import Link from "next/link";
-
+import Image from "next/image";
 
 interface ToolCardProps {
-
   tool: {
-
-    id:number;
-
-    name:string;
-
-    slug:string;
-
-    category:string;
-
-    description:string;
-
-    image:string;
-
-    rating:number;
-
-    pricing:string;
-
+    id: number;
+    name: string;
+    slug: string;
+    category: string;
+    description: string;
+    image: string;
+    rating: number;
+    pricing: string;
   };
-
 }
 
-
-
-export default function ToolCard({tool}:ToolCardProps){
-
-
+export default function ToolCard({ tool }: ToolCardProps) {
   return (
+    <div className="border rounded-2xl p-5 hover:shadow-xl transition bg-white">
 
-    <div className="border rounded-2xl p-5 hover:shadow-lg transition">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-14 h-14 rounded-xl overflow-hidden border">
+          <Image
+            src={tool.image}
+            alt={tool.name}
+            width={56}
+            height={56}
+            className="object-cover"
+          />
+        </div>
 
+        <div>
+          <h2 className="text-xl font-bold">
+            {tool.name}
+          </h2>
 
-      {tool.image && (
-
-        <img
-
-          src={tool.image}
-
-          alt={tool.name}
-
-          className="w-full h-48 object-cover rounded-xl mb-4"
-
-        />
-
-      )}
-
-
-
-      <h2 className="text-2xl font-bold mb-2">
-
-        {tool.name}
-
-      </h2>
+          <p className="text-sm text-gray-500">
+            {tool.category}
+          </p>
+        </div>
+      </div>
 
 
-
-      <div className="flex gap-2 flex-wrap mb-3">
-
-
-        <span className="border px-3 py-1 rounded-full text-sm">
-
-          ⭐ {tool.rating}
-
-        </span>
+      <p className="text-gray-600 mb-4">
+        {tool.description}
+      </p>
 
 
+      <div className="flex justify-between items-center mb-4">
 
-        <span className="border px-3 py-1 rounded-full text-sm">
-
-          {tool.category}
-
-        </span>
-
-
-
-        <span className="border px-3 py-1 rounded-full text-sm">
-
+        <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
           {tool.pricing}
-
         </span>
 
+        <span className="font-semibold">
+          ⭐ {tool.rating}
+        </span>
 
       </div>
 
 
-
-      <p className="text-gray-600 line-clamp-3 mb-5">
-
-        {tool.description}
-
-      </p>
-
-
-
       <Link
-
         href={`/tools/${tool.slug}`}
-
-        className="inline-block bg-blue-600 text-white px-5 py-2 rounded-xl"
-
+        className="block text-center bg-black text-white rounded-xl py-2 hover:opacity-80"
       >
-
-        View Tool →
-
+        View Tool
       </Link>
 
-
     </div>
-
   );
-
 }
 

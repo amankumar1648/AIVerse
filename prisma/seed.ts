@@ -3,8 +3,19 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.tool.createMany({
+await prisma.tool.createMany({
+  skipDuplicates: true,
     data: [
+     {
+  name: "Perplexity",
+  slug: "perplexity",
+  category: "AI Assistant",
+  description: "AI search engine that provides answers with sources and citations.",
+  image: "/tools/perplexity.png",
+  rating: 4.7,
+  pricing: "Free + Paid",
+  website: "https://perplexity.ai",
+},
       {
         name: "ChatGPT",
         slug: "chatgpt",
@@ -49,3 +60,4 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+
