@@ -13,22 +13,30 @@ export default async function CategoryPage({ params }: PageProps) {
   const { slug } = await params;
 
   const categoryName = slug
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+    .replaceAll("-", " ")
+    .replace(/\bai\b/gi, "AI")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 
   const tools = await prisma.tool.findMany({
     where: {
-      category: categoryName,
+      category: {
+        equals: categoryName,
+        mode: "insensitive",
+      },
     },
   });
 
   return (
     <main className="p-8">
-
       <h1 className="text-4xl font-bold mb-8">
         {categoryName} AI Tools
       </h1>
+
+      {tools.length === 0 && (
+        <p className="text-gray-500">
+          No tools found in this category.
+        </p>
+      )}
 
       <div className="grid md:grid-cols-3 gap-6">
         {tools.map((tool) => (
@@ -38,7 +46,6 @@ export default async function CategoryPage({ params }: PageProps) {
           />
         ))}
       </div>
-
     </main>
   );
 }
