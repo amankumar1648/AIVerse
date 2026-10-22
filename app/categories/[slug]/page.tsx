@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
 import ToolCard from "@/components/ToolCard";
 
@@ -70,4 +71,5 @@ export default async function CategoryPage({params}:PageProps){
   );
 
 }
+
 
