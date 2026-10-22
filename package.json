@@ -1,3 +1,4 @@
+
 {
   "name": "aiverse",
   "version": "1.0.0",
@@ -14,6 +15,9 @@
     "format": "prettier --write .",
     "postinstall": "prisma generate"
   },
+"prisma": {
+  "seed": "tsx prisma/seed.ts"
+},
   "dependencies": {
     "@prisma/client": "^6.19.3",
     "@radix-ui/react-dialog": "^1.1.4",
@@ -63,3 +67,4 @@
     "adsense"
   ]
 }
+

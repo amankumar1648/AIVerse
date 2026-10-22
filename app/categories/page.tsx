@@ -45,10 +45,9 @@ export default async function CategoriesPage() {
 
             key={category}
 
-            href={`/categories/${category
-              .toLowerCase()
-              .replaceAll(" ", "-")}`}
-
+href={`/categories/${category
+  .toLowerCase()
+  .replaceAll(" ", "-")}`}
           >
 
 
@@ -97,5 +96,4 @@ export default async function CategoriesPage() {
   );
 
 }
-
 

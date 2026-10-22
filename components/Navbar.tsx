@@ -71,8 +71,9 @@ export default function Navbar(){
 
                   key={category}
 
-                  href={`/categories/${category}`}
-
+href={`/categories/${category
+  .toLowerCase()
+  .replaceAll(" ", "-")}`}
                   className="block p-2 hover:bg-gray-100 rounded"
 
                 >

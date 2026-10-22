@@ -20,7 +20,7 @@ export default async function CategoryPage({ params }: PageProps) {
   const tools = await prisma.tool.findMany({
     where: {
       category: {
-        equals: categoryName,
+        contains: categoryName,
         mode: "insensitive",
       },
     },
@@ -32,20 +32,15 @@ export default async function CategoryPage({ params }: PageProps) {
         {categoryName} AI Tools
       </h1>
 
-      {tools.length === 0 && (
-        <p className="text-gray-500">
-          No tools found in this category.
-        </p>
+      {tools.length === 0 ? (
+        <p>No tools found in this category.</p>
+      ) : (
+        <div className="grid md:grid-cols-3 gap-6">
+          {tools.map((tool) => (
+            <ToolCard key={tool.id} tool={tool} />
+          ))}
+        </div>
       )}
-
-      <div className="grid md:grid-cols-3 gap-6">
-        {tools.map((tool) => (
-          <ToolCard
-            key={tool.id}
-            tool={tool}
-          />
-        ))}
-      </div>
     </main>
   );
 }
