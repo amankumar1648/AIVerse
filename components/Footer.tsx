@@ -3,26 +3,24 @@ import Link from "next/link";
 
 export default function Footer(){
 
-
   return (
 
     <footer className="border-t mt-20 p-8">
 
 
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-6">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-5 gap-8">
 
 
         <div>
 
           <h2 className="text-xl font-bold">
-
             AIVerse 🚀
-
           </h2>
 
-          <p className="mt-2 text-gray-600">
+          <p className="mt-3 text-gray-600 leading-7">
 
-            Discover the best AI tools in one place.
+            Discover and explore the best AI tools
+            for productivity, creativity and innovation.
 
           </p>
 
@@ -30,79 +28,100 @@ export default function Footer(){
 
 
 
+
         <div>
 
-          <h3 className="font-bold">
-
+          <h3 className="font-bold mb-3">
             Explore
-
           </h3>
 
 
-          <Link href="/tools">
+          <div className="space-y-2 flex flex-col">
 
-            Tools
+            <Link href="/tools">
+              AI Tools
+            </Link>
 
-          </Link>
+            <Link href="/categories">
+              Categories
+            </Link>
+
+            <Link href="/submit">
+              Submit Tool
+            </Link>
+
+          </div>
 
 
         </div>
 
 
 
+
         <div>
 
-          <h3 className="font-bold">
-
+          <h3 className="font-bold mb-3">
             Company
-
           </h3>
 
 
-          <Link href="/about">
+          <div className="space-y-2 flex flex-col">
 
-            About
+            <Link href="/about">
+              About
+            </Link>
 
-          </Link>
+            <Link href="/contact">
+              Contact
+            </Link>
 
-
-          <br />
-
-          <Link href="/contact">
-
-            Contact
-
-          </Link>
+          </div>
 
 
         </div>
 
 
 
+
         <div>
 
-          <h3 className="font-bold">
-
+          <h3 className="font-bold mb-3">
             Legal
-
           </h3>
 
 
-          <Link href="/privacy">
+          <div className="space-y-2 flex flex-col">
 
-            Privacy
+            <Link href="/privacy">
+              Privacy Policy
+            </Link>
 
-          </Link>
+            <Link href="/terms">
+              Terms & Conditions
+            </Link>
+
+          </div>
 
 
-          <br />
+        </div>
 
 
-          <Link href="/terms">
 
-            Terms
 
-          </Link>
+        <div>
+
+          <h3 className="font-bold mb-3">
+            Disclaimer
+          </h3>
+
+
+          <p className="text-gray-600 text-sm leading-6">
+
+            AIVerse provides AI tool information
+            for discovery purposes. Always verify
+            details from official websites.
+
+          </p>
 
 
         </div>
@@ -112,9 +131,11 @@ export default function Footer(){
 
 
 
-      <p className="text-center mt-8 text-gray-500">
 
-        © {new Date().getFullYear()} AIVerse. All rights reserved.
+      <p className="text-center mt-10 text-gray-500">
+
+        © {new Date().getFullYear()} AIVerse.
+        All rights reserved.
 
       </p>
 
