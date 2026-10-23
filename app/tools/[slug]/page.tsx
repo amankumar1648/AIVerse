@@ -1,10 +1,9 @@
 export const dynamic = "force-dynamic";
 
 import Image from "next/image";
-import Link from "next/link";
-import FavoriteButton from "@/components/FavoriteButton";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import FavoriteButton from "@/components/FavoriteButton";
 
 
 interface PageProps {
@@ -26,19 +25,11 @@ export async function generateMetadata({params}: PageProps){
 
 
   return {
-
     title: tool
-      ? `${tool.name} Review, Features & Pricing | AIVerse`
-      : "AI Tools Directory | AIVerse",
+      ? `${tool.name} - AI Tool | AIVerse`
+      : "AI Tools | AIVerse",
 
-    description: tool
-      ? `Explore ${tool.name}. Features, pricing and alternatives on AIVerse.`
-      : "Discover the best AI tools.",
-
-    alternates:{
-      canonical:`https://aiverse2.netlify.app/tools/${slug}`,
-    },
-
+    description: tool?.description || "Discover AI tools on AIVerse",
   };
 
 }
@@ -62,23 +53,6 @@ export default async function ToolPage({params}: PageProps){
   if(!tool){
     notFound();
   }
-
-
-
-  const relatedTools = await prisma.tool.findMany({
-
-    where:{
-      category: tool.category,
-
-      NOT:{
-        slug,
-      },
-
-    },
-
-    take:3,
-
-  });
 
 
 
@@ -111,49 +85,35 @@ export default async function ToolPage({params}: PageProps){
 
 
 
-            <div>
+            <div className="flex-1">
 
 
               <h1 className="text-5xl font-bold mb-4">
-
                 {tool.name}
-
               </h1>
 
 
 
               <div className="flex gap-3 flex-wrap mb-6">
 
-
                 <span className="bg-yellow-100 px-4 py-2 rounded-full">
-
                   ⭐ {tool.rating}
-
                 </span>
-
 
                 <span className="bg-blue-100 px-4 py-2 rounded-full">
-
                   {tool.category}
-
                 </span>
-
 
                 <span className="bg-green-100 px-4 py-2 rounded-full">
-
                   {tool.pricing}
-
                 </span>
-
 
               </div>
 
 
 
-              <p className="text-lg text-gray-600 mb-6">
-
+              <p className="text-gray-600 text-lg mb-6">
                 {tool.description}
-
               </p>
 
 
@@ -164,22 +124,16 @@ export default async function ToolPage({params}: PageProps){
 
                 target="_blank"
 
-                rel="noopener noreferrer"
-
-                className="inline-block bg-black text-white px-8 py-3 rounded-xl"
+                className="bg-black text-white px-8 py-3 rounded-xl inline-block"
 
               >
-
                 Visit Official Website →
-
               </a>
 
 
 
               <div className="mt-5">
-
                 <FavoriteButton toolId={tool.id}/>
-
               </div>
 
 
@@ -189,72 +143,89 @@ export default async function ToolPage({params}: PageProps){
           </div>
 
 
-        </div>
+
+          <section className="mt-10 grid md:grid-cols-2 gap-6">
 
 
+            <div className="border rounded-xl p-6">
 
-        {relatedTools.length > 0 && (
+              <h2 className="text-2xl font-bold mb-3">
+                🚀 Features
+              </h2>
 
-          <section className="mt-10">
-
-            <h2 className="text-3xl font-bold mb-5">
-
-              Related AI Tools 🚀
-
-            </h2>
-
-
-            <div className="grid md:grid-cols-3 gap-5">
-
-
-              {relatedTools.map((item)=>(
-
-                <div
-                  key={item.id}
-                  className="bg-white border rounded-xl p-5"
-                >
-
-                  <h3 className="text-xl font-bold">
-
-                    {item.name}
-
-                  </h3>
-
-
-                  <p className="text-gray-600 mt-2">
-
-                    {item.description.slice(0,80)}...
-
-                  </p>
-
-
-                  <Link
-
-                    href={`/tools/${item.slug}`}
-
-                    className="inline-block mt-4 bg-black text-white px-4 py-2 rounded-lg"
-
-                  >
-
-                    View Tool
-
-                  </Link>
-
-
-                </div>
-
-              ))}
-
+              <p>
+                {tool.features || "No features added yet."}
+              </p>
 
             </div>
 
+
+
+            <div className="border rounded-xl p-6">
+
+              <h2 className="text-2xl font-bold mb-3">
+                🎯 Best For
+              </h2>
+
+              <p>
+                {tool.bestFor || "General AI users"}
+              </p>
+
+            </div>
+
+
+
+            <div className="border rounded-xl p-6">
+
+              <h2 className="text-2xl font-bold mb-3">
+                ✅ Pros
+              </h2>
+
+              <p>
+                {tool.pros || "No pros added yet."}
+              </p>
+
+            </div>
+
+
+
+            <div className="border rounded-xl p-6">
+
+              <h2 className="text-2xl font-bold mb-3">
+                ❌ Cons
+              </h2>
+
+              <p>
+                {tool.cons || "No cons added yet."}
+              </p>
+
+            </div>
+
+
+
           </section>
 
-        )}
 
+
+          <section className="mt-8 border rounded-xl p-6">
+
+            <h2 className="text-2xl font-bold mb-3">
+              🔄 Alternatives
+            </h2>
+
+            <p>
+              {tool.alternatives || "No alternatives added yet."}
+            </p>
+
+          </section>
+
+
+
+        </div>
 
 
       </div>
+
 
     </main>
 

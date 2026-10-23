@@ -4,158 +4,101 @@ const prisma = new PrismaClient();
 
 async function main() {
 
+  await prisma.tool.deleteMany();
+
+
   await prisma.tool.createMany({
 
-    skipDuplicates: true,
-
     data: [
-
-      {
-        name: "Perplexity",
-        slug: "perplexity",
-        category: "AI Assistant",
-        description: "AI search engine that provides answers with sources and citations.",
-        image: "/tools/perplexity.png",
-        rating: 4.7,
-        pricing: "Free + Paid",
-        website: "https://perplexity.ai",
-      },
 
       {
         name: "ChatGPT",
         slug: "chatgpt",
         category: "AI Assistant",
-        description: "AI chatbot for writing, coding, learning and productivity.",
+        description: "ChatGPT is an AI assistant for writing, coding, learning and productivity.",
         image: "/tools/chatgpt.png",
         rating: 4.8,
         pricing: "Free + Paid",
         website: "https://chat.openai.com",
+        features: "AI chat, coding help, writing, image generation, research",
+        pros: "Easy to use, powerful AI models, many use cases",
+        cons: "Advanced features require paid plan",
+        bestFor: "Students, developers, writers and professionals",
+        alternatives: "Claude, Gemini, Microsoft Copilot"
       },
+
 
       {
         name: "Claude",
         slug: "claude",
         category: "AI Assistant",
-        description: "AI assistant for writing, analysis and coding.",
+        description: "Claude is an AI assistant focused on reasoning, writing and analysis.",
         image: "/tools/claude.png",
-        rating: 4.6,
-        pricing: "Free + Paid",
-        website: "https://claude.ai",
-      },
-
-      {
-        name: "Gemini",
-        slug: "gemini",
-        category: "AI Assistant",
-        description: "Google AI assistant for research and productivity.",
-        image: "/tools/gemini.png",
         rating: 4.7,
         pricing: "Free + Paid",
-        website: "https://gemini.google.com",
+        website: "https://claude.ai",
+        features: "Long documents, coding, analysis, writing",
+        pros: "Excellent reasoning and natural writing",
+        cons: "Some features have usage limits",
+        bestFor: "Researchers, writers and developers",
+        alternatives: "ChatGPT, Gemini"
       },
+
 
       {
         name: "Midjourney",
         slug: "midjourney",
         category: "AI Image Generator",
-        description: "AI image generation tool creating high quality artwork.",
+        description: "Midjourney creates high quality AI generated images.",
         image: "/tools/midjourney.png",
         rating: 4.7,
         pricing: "Paid",
         website: "https://midjourney.com",
+        features: "AI art, realistic images, creative designs",
+        pros: "Very high quality images",
+        cons: "Requires subscription",
+        bestFor: "Designers and creators",
+        alternatives: "DALL-E, Leonardo AI"
       },
 
+
       {
-        name: "DALL-E",
-        slug: "dall-e",
-        category: "AI Image Generator",
-        description: "AI image generator by OpenAI.",
-        image: "/tools/dalle.png",
+        name: "Gemini",
+        slug: "gemini",
+        category: "AI Assistant",
+        description: "Google Gemini is an AI assistant for search, writing and productivity.",
+        image: "/tools/gemini.png",
         rating: 4.6,
-        pricing: "Paid",
-        website: "https://openai.com/dall-e",
+        pricing: "Free + Paid",
+        website: "https://gemini.google.com",
+        features: "AI chat, Google integration, research",
+        pros: "Strong Google ecosystem integration",
+        cons: "Responses can vary",
+        bestFor: "Students and Google users",
+        alternatives: "ChatGPT, Claude"
       },
+
 
       {
         name: "GitHub Copilot",
         slug: "github-copilot",
         category: "AI Coding",
-        description: "AI coding assistant for developers.",
+        description: "AI coding assistant that helps developers write code faster.",
         image: "/tools/github-copilot.png",
-        rating: 4.8,
+        rating: 4.6,
         pricing: "Paid",
         website: "https://github.com/features/copilot",
-      },
+        features: "Code completion, debugging, suggestions",
+        pros: "Improves developer productivity",
+        cons: "Requires subscription",
+        bestFor: "Software developers",
+        alternatives: "Cursor, Codeium"
+      }
 
-      {
-        name: "Cursor",
-        slug: "cursor",
-        category: "AI Coding",
-        description: "AI-powered code editor.",
-        image: "/tools/cursor.png",
-        rating: 4.7,
-        pricing: "Free + Paid",
-        website: "https://cursor.com",
-      },
-
-      {
-        name: "Runway",
-        slug: "runway",
-        category: "AI Video",
-        description: "AI video generation and editing platform.",
-        image: "/tools/runway.png",
-        rating: 4.5,
-        pricing: "Free + Paid",
-        website: "https://runwayml.com",
-      },
-
-      {
-        name: "ElevenLabs",
-        slug: "elevenlabs",
-        category: "AI Audio",
-        description: "AI voice generation and text to speech platform.",
-        image: "/tools/elevenlabs.png",
-        rating: 4.7,
-        pricing: "Free + Paid",
-        website: "https://elevenlabs.io",
-      },
-
-      {
-        name: "Canva AI",
-        slug: "canva-ai",
-        category: "AI Design",
-        description: "AI design tools for graphics and presentations.",
-        image: "/tools/canva.png",
-        rating: 4.6,
-        pricing: "Free + Paid",
-        website: "https://canva.com",
-      },
-
-      {
-        name: "Notion AI",
-        slug: "notion-ai",
-        category: "AI Productivity",
-        description: "AI assistant for notes and productivity.",
-        image: "/tools/notion.png",
-        rating: 4.6,
-        pricing: "Free + Paid",
-        website: "https://notion.so",
-      },
-
-      {
-        name: "Gamma AI",
-        slug: "gamma-ai",
-        category: "AI Productivity",
-        description: "AI presentation and document creation tool.",
-        image: "/tools/gamma.png",
-        rating: 4.5,
-        pricing: "Free + Paid",
-        website: "https://gamma.app",
-      },
-
-    ],
+    ]
 
   });
+
 
   console.log("Tools added successfully!");
 
@@ -163,15 +106,10 @@ async function main() {
 
 
 main()
-  .catch((error) => {
-
-    console.error(error);
-    process.exit(1);
-
-  })
-  .finally(async () => {
-
-    await prisma.$disconnect();
-
-  });
+.catch((e)=>{
+  console.error(e);
+})
+.finally(async()=>{
+  await prisma.$disconnect();
+});
 

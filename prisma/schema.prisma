@@ -29,6 +29,16 @@ model Tool {
 
   website String
 
+  features String?
+
+  pros String?
+
+  cons String?
+
+  bestFor String?
+
+  alternatives String?
+
 
   favorites Favorite[]
 
