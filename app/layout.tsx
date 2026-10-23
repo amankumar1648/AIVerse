@@ -22,7 +22,6 @@ export const metadata: Metadata = {
     "AI writing tools",
     "AI image generators",
     "AI coding tools",
-    "Artificial Intelligence",
   ],
 
   metadataBase: new URL(
@@ -40,7 +39,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "AIVerse - Discover the Best AI Tools",
+        alt: "AIVerse AI Tools Directory",
       },
     ],
   },
@@ -50,7 +49,9 @@ export const metadata: Metadata = {
     title: "AIVerse - Discover the Best AI Tools",
     description:
       "Find and explore the best AI tools in one place.",
-    images: ["/opengraph-image"],
+    images: [
+      "/opengraph-image",
+    ],
   },
 
   robots: {
@@ -70,6 +71,20 @@ export default function RootLayout({
     <html lang="en">
 
       <body>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "AIVerse",
+              "url": "https://aiverse2.netlify.app",
+              "description":
+                "Discover the best AI tools for writing, coding, images, video and productivity.",
+            }),
+          }}
+        />
 
         <Navbar />
 
