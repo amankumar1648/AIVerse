@@ -6,14 +6,13 @@ import Footer from "@/components/Footer";
 
 
 export const metadata: Metadata = {
-
   title: {
     default: "AIVerse - Discover the Best AI Tools",
     template: "%s | AIVerse",
   },
 
   description:
-    "AIVerse is an AI tools directory where you can discover the best AI tools for writing, coding, images, videos, productivity and more.",
+    "AIVerse is an AI tools directory where you can discover the best AI tools for writing, coding, images, video, marketing and productivity.",
 
   keywords: [
     "AI tools",
@@ -36,6 +35,14 @@ export const metadata: Metadata = {
       "Discover powerful AI tools for writing, coding, images, videos and productivity.",
     type: "website",
     siteName: "AIVerse",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "AIVerse - Discover the Best AI Tools",
+      },
+    ],
   },
 
   twitter: {
@@ -43,13 +50,13 @@ export const metadata: Metadata = {
     title: "AIVerse - Discover the Best AI Tools",
     description:
       "Find and explore the best AI tools in one place.",
+    images: ["/opengraph-image"],
   },
 
   robots: {
     index: true,
     follow: true,
   },
-
 };
 
 
@@ -60,7 +67,6 @@ export default function RootLayout({
 }>) {
 
   return (
-
     <html lang="en">
 
       <body>
@@ -74,8 +80,6 @@ export default function RootLayout({
       </body>
 
     </html>
-
   );
-
 }
 
