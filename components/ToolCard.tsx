@@ -1,28 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
 
-
 interface ToolCardProps {
-
   tool: {
-
-    id:number;
-    name:string;
-    slug:string;
-    category:string;
-    description:string;
-    image:string;
-    rating:number;
-    pricing:string;
-
+    id: number;
+    name: string;
+    slug: string;
+    category: string;
+    description: string;
+    image: string;
+    rating: number;
+    pricing: string;
   };
-
 }
 
-
-
-export default function ToolCard({tool}:ToolCardProps){
-
+export default function ToolCard({ tool }: ToolCardProps) {
 
   return (
 
@@ -35,48 +27,31 @@ export default function ToolCard({tool}:ToolCardProps){
         <div className="w-14 h-14 rounded-xl overflow-hidden border">
 
 
-          {tool.image ? (
+          <Image
 
-            <Image
+            src={tool.image || "/tools/default.png"}
 
-              src={tool.image}
+            alt={tool.name}
 
-              alt={tool.name}
+            width={56}
 
-              width={56}
+            height={56}
 
-              height={56}
+            className="object-cover"
 
-              className="object-cover w-full h-full"
-
-            />
-
-          ) : (
-
-            <div className="w-full h-full flex items-center justify-center bg-gray-100 text-2xl">
-
-              🤖
-
-            </div>
-
-          )}
+          />
 
 
         </div>
 
 
-
-
-
         <div>
-
 
           <h2 className="text-xl font-bold">
 
             {tool.name}
 
           </h2>
-
 
 
           <p className="text-sm text-gray-500">
@@ -93,15 +68,11 @@ export default function ToolCard({tool}:ToolCardProps){
 
 
 
-
-
-      <p className="text-gray-600 mb-4 line-clamp-3">
+      <p className="text-gray-600 mb-4">
 
         {tool.description}
 
       </p>
-
-
 
 
 
@@ -128,7 +99,6 @@ export default function ToolCard({tool}:ToolCardProps){
 
 
 
-
       <Link
 
         href={`/tools/${tool.slug}`}
@@ -137,9 +107,10 @@ export default function ToolCard({tool}:ToolCardProps){
 
       >
 
-        View Tool →
+        View Tool
 
       </Link>
+
 
 
     </div>
