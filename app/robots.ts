@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://aiverse.com/sitemap.xml",
+    sitemap: "https://aiverse2.netlify.app/sitemap.xml",
   };
 }
 
