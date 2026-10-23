@@ -14,45 +14,52 @@ interface PageProps {
 }
 
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({params}: PageProps){
 
-  const { slug } = await params;
+  const {slug} = await params;
 
   const tool = await prisma.tool.findUnique({
-    where: {
+    where:{
       slug,
     },
   });
 
 
   return {
+
     title: tool
-      ? `${tool.name} - AI Tool | AIVerse`
-      : "AI Tools | AIVerse",
+      ? `${tool.name} Review, Features & Pricing | AIVerse`
+      : "AI Tools Directory | AIVerse",
 
     description: tool
-      ? tool.description
-      : "Discover the best AI tools on AIVerse",
+      ? `Explore ${tool.name}. Features, pricing and alternatives on AIVerse.`
+      : "Discover the best AI tools.",
+
+    alternates:{
+      canonical:`https://aiverse2.netlify.app/tools/${slug}`,
+    },
+
   };
 
 }
 
 
 
-export default async function ToolPage({ params }: PageProps) {
+export default async function ToolPage({params}: PageProps){
 
-
-  const { slug } = await params;
+  const {slug} = await params;
 
 
   const tool = await prisma.tool.findUnique({
-    where: {
+
+    where:{
       slug,
     },
+
   });
 
 
-  if (!tool) {
+  if(!tool){
     notFound();
   }
 
@@ -60,17 +67,16 @@ export default async function ToolPage({ params }: PageProps) {
 
   const relatedTools = await prisma.tool.findMany({
 
-    where: {
-
+    where:{
       category: tool.category,
 
-      NOT: {
+      NOT:{
         slug,
       },
 
     },
 
-    take: 3,
+    take:3,
 
   });
 
@@ -78,8 +84,7 @@ export default async function ToolPage({ params }: PageProps) {
 
   return (
 
-    <main className="min-h-screen p-8 bg-gray-50">
-
+    <main className="min-h-screen bg-gray-50 p-8">
 
       <div className="max-w-5xl mx-auto">
 
@@ -90,31 +95,19 @@ export default async function ToolPage({ params }: PageProps) {
           <div className="flex flex-col md:flex-row gap-8">
 
 
-            {tool.image ? (
+            <Image
 
-              <Image
+              src={tool.image || "/tools/default.png"}
 
-                src={tool.image}
+              alt={tool.name}
 
-                alt={tool.name}
+              width={160}
 
-                width={160}
+              height={160}
 
-                height={160}
+              className="rounded-2xl border object-contain"
 
-                className="rounded-2xl border object-contain"
-
-              />
-
-            ) : (
-
-              <div className="w-40 h-40 rounded-2xl border flex items-center justify-center text-5xl">
-
-                🤖
-
-              </div>
-
-            )}
+            />
 
 
 
@@ -200,120 +193,9 @@ export default async function ToolPage({ params }: PageProps) {
 
 
 
-        <div className="mt-10 bg-white rounded-3xl shadow-lg p-8">
-
-
-          <h2 className="text-3xl font-bold mb-5">
-
-            About {tool.name}
-
-          </h2>
-
-
-          <p className="text-gray-600 leading-7">
-
-            {tool.name} is an AI tool in the {tool.category} category.
-            It helps users improve productivity and complete tasks faster
-            using artificial intelligence.
-
-          </p>
-
-
-
-          <h2 className="text-3xl font-bold mt-8 mb-5">
-
-            Key Features
-
-          </h2>
-
-
-          <ul className="list-disc ml-6 text-gray-600 space-y-2">
-
-            <li>AI-powered platform</li>
-
-            <li>Improves productivity and workflow</li>
-
-            <li>Useful for creators, students and professionals</li>
-
-            <li>Available with {tool.pricing} plans</li>
-
-          </ul>
-
-
-
-          <h2 className="text-3xl font-bold mt-8 mb-5">
-
-            Who Should Use {tool.name}?
-
-          </h2>
-
-
-          <p className="text-gray-600">
-
-            Students, developers, creators, businesses and professionals
-            can use {tool.name} to improve their work with AI.
-
-          </p>
-
-
-
-          <h2 className="text-3xl font-bold mt-8 mb-5">
-
-            Frequently Asked Questions
-
-          </h2>
-
-
-          <div className="space-y-4">
-
-
-            <div>
-
-              <h3 className="font-bold">
-
-                Is {tool.name} free?
-
-              </h3>
-
-              <p className="text-gray-600">
-
-                {tool.name} provides {tool.pricing} options.
-
-              </p>
-
-            </div>
-
-
-
-            <div>
-
-              <h3 className="font-bold">
-
-                What category is {tool.name}?
-
-              </h3>
-
-              <p className="text-gray-600">
-
-                It belongs to the {tool.category} category.
-
-              </p>
-
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-
-
-
         {relatedTools.length > 0 && (
 
-          <div className="mt-10">
-
+          <section className="mt-10">
 
             <h2 className="text-3xl font-bold mb-5">
 
@@ -366,15 +248,13 @@ export default async function ToolPage({ params }: PageProps) {
 
             </div>
 
-
-          </div>
+          </section>
 
         )}
 
 
 
       </div>
-
 
     </main>
 
