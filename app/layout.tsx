@@ -6,13 +6,14 @@ import Footer from "@/components/Footer";
 
 
 export const metadata: Metadata = {
+
   title: {
     default: "AIVerse - Discover the Best AI Tools",
     template: "%s | AIVerse",
   },
 
   description:
-    "AIVerse is an AI tools directory where you can discover the best AI tools for writing, coding, images, videos, marketing, productivity and more.",
+    "AIVerse is an AI tools directory where you can discover the best AI tools for writing, coding, images, videos, productivity and more.",
 
   keywords: [
     "AI tools",
@@ -25,7 +26,9 @@ export const metadata: Metadata = {
     "Artificial Intelligence",
   ],
 
-  metadataBase: new URL("https://verdant-gumdrop-064c5b.netlify.app"),
+  metadataBase: new URL(
+    "https://aiverse2.netlify.app"
+  ),
 
   openGraph: {
     title: "AIVerse - Discover the Best AI Tools",
@@ -46,18 +49,15 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+
 };
 
+
 export default function RootLayout({
-
   children,
-
 }: Readonly<{
-
   children: React.ReactNode;
-
 }>) {
-
 
   return (
 
@@ -65,15 +65,11 @@ export default function RootLayout({
 
       <body>
 
-
         <Navbar />
-
 
         {children}
 
-
         <Footer />
-
 
       </body>
 
