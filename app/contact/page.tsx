@@ -6,50 +6,79 @@ export default function ContactPage(){
 
 
       <h1 className="text-4xl font-bold mb-6">
-
         Contact AIVerse 🚀
-
       </h1>
 
 
 
       <p className="text-lg leading-8">
 
-        Have questions, suggestions or want to report an issue?
-        We would love to hear from you.
+        We would love to hear from you. If you have
+        questions, suggestions, feedback or want to
+        report an issue, feel free to contact the
+        AIVerse team.
 
       </p>
 
 
 
-      <div className="mt-6 space-y-3">
+      <h2 className="text-3xl font-bold mt-10 mb-4">
+        Get In Touch
+      </h2>
+
+
+
+      <div className="space-y-4 text-lg">
 
 
         <p>
-
-          📧 Email: support@aiverse.com
-
+          📧 Email:
+          <span className="font-semibold">
+            {" "}support@aiverse.com
+          </span>
         </p>
 
 
 
         <p>
-
-          💡 Suggestions: Submit your feedback and ideas to help
-          improve AIVerse.
-
+          💡 Suggestions:
+          We welcome ideas that can help us improve
+          AIVerse and make the platform more useful.
         </p>
 
 
 
         <p>
+          🛠 Report Issues:
+          Let us know if you find incorrect information,
+          broken links or technical problems.
+        </p>
 
-          🤝 Partnerships: Contact us for collaborations.
 
+
+        <p>
+          🤝 Partnerships:
+          Contact us for collaborations and business
+          opportunities.
         </p>
 
 
       </div>
+
+
+
+      <h2 className="text-3xl font-bold mt-10 mb-4">
+        Response Time
+      </h2>
+
+
+      <p className="text-lg leading-8">
+
+        We try to respond to genuine queries as soon
+        as possible. Thank you for helping us improve
+        AIVerse.
+
+      </p>
 
 
     </main>
