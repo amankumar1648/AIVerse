@@ -1,104 +1,144 @@
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 
-export default async function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+
   const tools = await prisma.tool.findMany({
+    orderBy: {
+      rating: "desc",
+    },
     take: 6,
   });
 
-  return (
-    <main className="max-w-7xl mx-auto p-8">
 
-      <section className="text-center py-16">
-        <h1 className="text-5xl font-bold">
-          AIVerse - AI Tools Directory 🚀
+  const categories = [
+    "AI Assistant",
+    "AI Coding",
+    "AI Image Generator",
+    "AI Video",
+    "AI Writing",
+  ];
+
+
+  return (
+    <main>
+
+      {/* Hero Section */}
+
+      <section className="container-custom py-20 text-center">
+
+        <h1 className="text-5xl md:text-6xl font-bold">
+          Discover The Best AI Tools
         </h1>
 
-        <p className="mt-4 text-gray-600 text-lg">
-          Discover the best AI tools for productivity,
-          learning, coding and creativity.
+        <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+          Explore the world's best AI tools for students,
+          developers, creators and professionals.
         </p>
+
+
+        <div className="mt-8 flex justify-center gap-4">
+
+          <Link
+            href="/tools"
+            className="bg-black text-white px-8 py-3 rounded-xl"
+          >
+            Explore AI Tools →
+          </Link>
+
+
+          <Link
+            href="/submit"
+            className="border px-8 py-3 rounded-xl"
+          >
+            Submit Tool
+          </Link>
+
+        </div>
+
       </section>
 
 
-      <section>
-        <h2 className="text-3xl font-bold mb-6">
-          Featured AI Tools
+
+      {/* Featured Tools */}
+
+      <section className="container-custom py-12">
+
+        <h2 className="text-3xl font-bold mb-8">
+          ⭐ Featured AI Tools
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
 
-          {tools.map((tool) => (
+        <div className="grid md:grid-cols-3 gap-8">
+
+          {tools.map((tool)=>(
+            
             <Link
               key={tool.id}
               href={`/tools/${tool.slug}`}
-              className="border rounded-xl p-6"
+              className="border rounded-2xl p-6 hover:shadow-xl transition"
             >
+
+              <div className="relative w-20 h-20 mb-5">
+                <Image
+                  src={tool.image}
+                  alt={tool.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+
               <h3 className="text-xl font-bold">
                 {tool.name}
               </h3>
 
-              <p className="mt-2 text-gray-600">
-                {tool.description}
+
+              <p className="text-gray-500 mt-2">
+                {tool.category}
               </p>
+
+
+              <p className="mt-3">
+                ⭐ {tool.rating}
+              </p>
+
+
             </Link>
+
           ))}
 
         </div>
+
       </section>
 
 
-      <section className="mt-16">
 
-        <h2 className="text-3xl font-bold mb-6">
-          Latest AI Articles
+      {/* Categories */}
+
+      <section className="container-custom py-12">
+
+        <h2 className="text-3xl font-bold mb-8">
+          Popular Categories
         </h2>
 
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-5 gap-4">
 
-
-          <article className="border rounded-xl p-6">
-
-            <h3 className="text-xl font-bold">
-              Best AI Tools for Students in 2026
-            </h3>
-
-            <p className="mt-3 text-gray-600">
-              Explore AI tools that help students study,
-              learn and improve productivity.
-            </p>
-
+          {categories.map((category)=>(
+            
             <Link
-              href="/blog/best-ai-tools-for-students-2026"
-              className="inline-block mt-4 text-blue-600 font-semibold"
+              key={category}
+              href="/tools"
+              className="border rounded-xl p-5 text-center hover:shadow-lg"
             >
-              Read Article →
+              {category}
             </Link>
 
-          </article>
-
-
-          <article className="border rounded-xl p-6">
-
-            <h3 className="text-xl font-bold">
-              ChatGPT vs Gemini vs Claude in 2026
-            </h3>
-
-            <p className="mt-3 text-gray-600">
-              Compare the top AI assistants and find
-              the best one for your needs.
-            </p>
-
-            <Link
-              href="/blog/chatgpt-vs-gemini-vs-claude-2026"
-              className="inline-block mt-4 text-blue-600 font-semibold"
-            >
-              Read Article →
-            </Link>
-
-          </article>
-
+          ))}
 
         </div>
 
