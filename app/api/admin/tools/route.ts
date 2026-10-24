@@ -1,9 +1,27 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
+async function checkAdmin() {
+  const cookieStore = await cookies();
 
+  const session = cookieStore.get("session");
+
+  if (!session) {
+    return false;
+  }
+
+  return true;
+}
 
 export async function PUT(req:Request){
+  const isAdmin = await checkAdmin();
 
+  if (!isAdmin) {
+    return NextResponse.json(
+      { error: "Unauthorized" },
+      { status: 401 }
+    );
+  }
 
   try {
 
@@ -71,7 +89,14 @@ export async function PUT(req:Request){
 
 }
 export async function DELETE(req:Request){
+  const isAdmin = await checkAdmin();
 
+  if (!isAdmin) {
+    return NextResponse.json(
+      { error: "Unauthorized" },
+      { status: 401 }
+    );
+  }
 
   const body = await req.json();
 
