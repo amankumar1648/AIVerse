@@ -113,40 +113,25 @@ export async function POST(req: Request) {
 
     // Only your admin account gets admin cookie
 
-    if(email === "amanchhapola395@gmail.com"){
+if(user.role === "ADMIN"){
 
-
-      response.cookies.set(
-
-        "admin",
-
-        "true",
-
-        {
-
-          httpOnly:false,
-
-          secure:false,
-
-          sameSite:"lax",
-
-          maxAge:60 * 60 * 24 * 7,
-
-          path:"/",
-
-        }
-
-      );
-
-
-    } else {
-
-
-      response.cookies.delete("admin");
-
-
+  response.cookies.set(
+    "admin",
+    "true",
+    {
+      httpOnly:false,
+      secure:false,
+      sameSite:"lax",
+      maxAge:60 * 60 * 24 * 7,
+      path:"/",
     }
+  );
 
+} else {
+
+  response.cookies.delete("admin");
+
+}
 
 
     return response;
@@ -175,4 +160,3 @@ export async function POST(req: Request) {
   }
 
 }
-
