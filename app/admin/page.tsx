@@ -1,5 +1,7 @@
 export const dynamic = "force-dynamic";
 
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import AdminToolCard from "@/components/AdminToolCard";
 import ApproveButton from "@/components/ApproveButton";
@@ -8,6 +10,13 @@ import RejectButton from "@/components/RejectButton";
 
 export default async function AdminPage() {
 
+  const cookieStore = await cookies();
+
+  const session = cookieStore.get("session");
+
+  if (!session) {
+    redirect("/login");
+  }
 
   const tools = await prisma.tool.findMany({
 
