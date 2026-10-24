@@ -54,7 +54,7 @@ export default function RootLayout({
         {/* Google Analytics */}
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-PQMC196H4C"
+          src="https://www.googletagmanager.com/gtag/js?id=G-63YMW7XM5D"
         ></script>
 
         <script
@@ -63,7 +63,7 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-PQMC196H4C');
+              gtag('config', 'G-63YMW7XM5D');
             `,
           }}
         />
@@ -81,4 +81,3 @@ export default function RootLayout({
     </html>
   );
 }
-
