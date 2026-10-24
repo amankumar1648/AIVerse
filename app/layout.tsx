@@ -1,65 +1,39 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-
 export const metadata: Metadata = {
-  title: {
-    default: "AIVerse - Discover the Best AI Tools",
-    template: "%s | AIVerse",
-  },
+metadataBase: new URL("https://aiverse.com"),
 
+
+  title: "AIVerse - Discover The Best AI Tools",
   description:
-    "AIVerse is an AI tools directory where you can discover the best AI tools for writing, coding, images, video, marketing and productivity.",
-
+    "AIVerse is an AI tools directory where you can discover the best AI tools for students, developers, creators and professionals.",
   keywords: [
     "AI tools",
     "AI directory",
-    "best AI tools",
-    "ChatGPT alternatives",
-    "AI writing tools",
-    "AI image generators",
-    "AI coding tools",
+    "ChatGPT",
+    "Claude",
+    "Gemini",
+    "AI software",
+    "AI tools for students",
   ],
-
-  metadataBase: new URL(
-    "https://aiverse2.netlify.app"
-  ),
-
   openGraph: {
-    title: "AIVerse - Discover the Best AI Tools",
+    title: "AIVerse - Discover The Best AI Tools",
     description:
-      "Discover powerful AI tools for writing, coding, images, videos and productivity.",
-    type: "website",
+      "Explore the best AI tools for productivity, coding, writing, design and more.",
+    url: "https://aiverse.com",
     siteName: "AIVerse",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "AIVerse AI Tools Directory",
-      },
-    ],
+    type: "website",
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "AIVerse - Discover the Best AI Tools",
+    title: "AIVerse - Discover The Best AI Tools",
     description:
-      "Find and explore the best AI tools in one place.",
-    images: [
-      "/opengraph-image",
-    ],
-  },
-
-  robots: {
-    index: true,
-    follow: true,
+      "Find the best AI tools in one place.",
   },
 };
-
 
 export default function RootLayout({
   children,
@@ -71,20 +45,6 @@ export default function RootLayout({
     <html lang="en">
 
       <body>
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "AIVerse",
-              "url": "https://aiverse2.netlify.app",
-              "description":
-                "Discover the best AI tools for writing, coding, images, video and productivity.",
-            }),
-          }}
-        />
 
         <Navbar />
 
