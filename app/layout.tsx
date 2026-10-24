@@ -4,12 +4,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-metadataBase: new URL("https://aiverse.com"),
+  metadataBase: new URL("https://aiverse.com"),
 
+  title: {
+    default: "AIVerse - Discover The Best AI Tools",
+    template: "%s | AIVerse",
+  },
 
-  title: "AIVerse - Discover The Best AI Tools",
   description:
     "AIVerse is an AI tools directory where you can discover the best AI tools for students, developers, creators and professionals.",
+
   keywords: [
     "AI tools",
     "AI directory",
@@ -18,7 +22,9 @@ metadataBase: new URL("https://aiverse.com"),
     "Gemini",
     "AI software",
     "AI tools for students",
+    "AI productivity tools",
   ],
+
   openGraph: {
     title: "AIVerse - Discover The Best AI Tools",
     description:
@@ -27,6 +33,7 @@ metadataBase: new URL("https://aiverse.com"),
     siteName: "AIVerse",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "AIVerse - Discover The Best AI Tools",
@@ -34,7 +41,6 @@ metadataBase: new URL("https://aiverse.com"),
       "Find the best AI tools in one place.",
   },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
