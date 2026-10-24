@@ -26,7 +26,6 @@ export default async function Home() {
   return (
     <main>
 
-      {/* Hero Section */}
 
       <section className="container-custom py-20 text-center">
 
@@ -35,8 +34,9 @@ export default async function Home() {
         </h1>
 
         <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-          Explore the world's best AI tools for students,
-          developers, creators and professionals.
+          AIVerse helps students, developers, creators and professionals
+          discover useful AI tools for productivity, coding, design,
+          writing and creativity.
         </p>
 
 
@@ -63,8 +63,6 @@ export default async function Home() {
 
 
 
-      {/* Featured Tools */}
-
       <section className="container-custom py-12">
 
         <h2 className="text-3xl font-bold mb-8">
@@ -74,8 +72,8 @@ export default async function Home() {
 
         <div className="grid md:grid-cols-3 gap-8">
 
-          {tools.map((tool)=>(
-            
+          {tools.map((tool) => (
+
             <Link
               key={tool.id}
               href={`/tools/${tool.slug}`}
@@ -117,8 +115,6 @@ export default async function Home() {
 
 
 
-      {/* Categories */}
-
       <section className="container-custom py-12">
 
         <h2 className="text-3xl font-bold mb-8">
@@ -128,8 +124,8 @@ export default async function Home() {
 
         <div className="grid md:grid-cols-5 gap-4">
 
-          {categories.map((category)=>(
-            
+          {categories.map((category) => (
+
             <Link
               key={category}
               href="/tools"
@@ -139,6 +135,58 @@ export default async function Home() {
             </Link>
 
           ))}
+
+        </div>
+
+      </section>
+
+
+
+      <section className="container-custom py-16">
+
+        <div className="max-w-4xl mx-auto">
+
+          <h2 className="text-3xl font-bold mb-4">
+            What is AIVerse?
+          </h2>
+
+          <p className="text-gray-700">
+            AIVerse is an AI tools directory that helps users discover
+            and compare artificial intelligence tools. We organize tools
+            by categories, features, pricing and use cases to make AI
+            discovery easier.
+          </p>
+
+
+          <h2 className="text-3xl font-bold mt-10 mb-4">
+            How We Organize AI Tools
+          </h2>
+
+          <p className="text-gray-700">
+            We collect useful information about AI platforms and present
+            it in a simple format. Users should always check official
+            websites for the latest pricing and availability.
+          </p>
+
+
+          <div className="mt-8 flex gap-4">
+
+            <Link
+              href="/about"
+              className="underline"
+            >
+              Learn More About Us
+            </Link>
+
+
+            <Link
+              href="/contact"
+              className="underline"
+            >
+              Contact AIVerse
+            </Link>
+
+          </div>
 
         </div>
 
