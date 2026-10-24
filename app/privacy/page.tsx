@@ -1,74 +1,127 @@
+export const metadata = {
+  title: "Privacy Policy - AIVerse",
+  description:
+    "Privacy Policy explaining how AIVerse collects, uses and protects user information.",
+};
+
+
 export default function PrivacyPage() {
+
   return (
-    <main className="max-w-4xl mx-auto p-8">
 
-      <h1 className="text-4xl font-bold mb-6">
-        Privacy Policy
-      </h1>
+    <main className="container-custom py-16">
 
+      <section className="max-w-4xl mx-auto">
 
-      <p className="leading-8">
-        At AIVerse, we respect your privacy and are committed to
-        protecting your personal information. This Privacy Policy
-        explains how we collect, use and protect information when
-        you use our website.
-      </p>
+        <h1 className="text-5xl font-bold mb-8">
+          Privacy Policy
+        </h1>
 
 
-      <h2 className="text-2xl font-bold mt-8 mb-3">
-        Information We Collect
-      </h2>
-
-      <p className="leading-8">
-        We may collect information provided by users when creating
-        an account, submitting AI tools, contacting us or interacting
-        with website features.
-      </p>
+        <div className="space-y-8 text-gray-700">
 
 
-      <h2 className="text-2xl font-bold mt-8 mb-3">
-        How We Use Information
-      </h2>
+          <section>
 
-      <p className="leading-8">
-        Information collected by AIVerse is used to improve our
-        services, manage submissions, maintain website security
-        and provide a better user experience.
-      </p>
+            <h2 className="text-2xl font-bold text-black mb-3">
+              Introduction
+            </h2>
 
+            <p>
+              Welcome to AIVerse. Your privacy is important to us.
+              This Privacy Policy explains how we handle information
+              when you use our website and services.
+            </p>
 
-      <h2 className="text-2xl font-bold mt-8 mb-3">
-        Third-Party Services
-      </h2>
-
-      <p className="leading-8">
-        AIVerse may use third-party services such as analytics,
-        advertising partners or external AI tool websites.
-        These services may have their own privacy policies.
-      </p>
+          </section>
 
 
-      <h2 className="text-2xl font-bold mt-8 mb-3">
-        Cookies
-      </h2>
 
-      <p className="leading-8">
-        We may use cookies and similar technologies to improve
-        website performance and understand user preferences.
-      </p>
+          <section>
+
+            <h2 className="text-2xl font-bold text-black mb-3">
+              Information We Collect
+            </h2>
+
+            <p>
+              We may collect information such as account details,
+              submitted AI tool information, and basic usage data
+              to improve our platform.
+            </p>
+
+          </section>
 
 
-      <h2 className="text-2xl font-bold mt-8 mb-3">
-        Contact Us
-      </h2>
 
-      <p className="leading-8">
-        If you have questions about this Privacy Policy,
-        please contact us through our contact page.
-      </p>
+          <section>
 
+            <h2 className="text-2xl font-bold text-black mb-3">
+              How We Use Information
+            </h2>
+
+            <p>
+              We use collected information to provide better services,
+              maintain website functionality, improve user experience,
+              and respond to user requests.
+            </p>
+
+          </section>
+
+
+
+          <section>
+
+            <h2 className="text-2xl font-bold text-black mb-3">
+              Cookies and Advertising
+            </h2>
+
+            <p>
+              AIVerse may use cookies and third-party services such as
+              analytics or advertising providers to understand website
+              usage and display relevant content.
+            </p>
+
+          </section>
+
+
+
+          <section>
+
+            <h2 className="text-2xl font-bold text-black mb-3">
+              Data Security
+            </h2>
+
+            <p>
+              We take reasonable measures to protect user information.
+              However, no online service can guarantee complete security.
+            </p>
+
+          </section>
+
+
+
+          <section>
+
+            <h2 className="text-2xl font-bold text-black mb-3">
+              Contact Us
+            </h2>
+
+            <p>
+              If you have questions about this Privacy Policy, please
+              contact us through our Contact page.
+            </p>
+
+          </section>
+
+
+        </div>
+
+
+      </section>
 
     </main>
+
   );
+
 }
 
