@@ -4,8 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aiverse.com"),
-
+metadataBase: new URL("https://aiverse2.netlify.app"),
   title: {
     default: "AIVerse - Discover The Best AI Tools",
     template: "%s | AIVerse",
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
     title: "AIVerse - Discover The Best AI Tools",
     description:
       "Explore the best AI tools for productivity, coding, writing, design and more.",
-    url: "https://aiverse.com",
+    url: "https://aiverse2.netlify.app",
     siteName: "AIVerse",
     type: "website",
   },
