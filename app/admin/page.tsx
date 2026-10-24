@@ -12,12 +12,21 @@ export default async function AdminPage() {
 
   const cookieStore = await cookies();
 
-  const session = cookieStore.get("session");
+const session = cookieStore.get("session");
 
-  if (!session) {
-    redirect("/login");
-  }
+if (!session) {
+  redirect("/login");
+}
 
+const user = await prisma.user.findUnique({
+  where: {
+    id: Number(session.value),
+  },
+});
+
+if (!user || user.role !== "ADMIN") {
+  redirect("/");
+}
   const tools = await prisma.tool.findMany({
 
     orderBy:{
