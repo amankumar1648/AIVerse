@@ -1,8 +1,8 @@
 export const dynamic = "force-dynamic";
 
+import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
 import AdminToolCard from "@/components/AdminToolCard";
 import ApproveButton from "@/components/ApproveButton";
 import RejectButton from "@/components/RejectButton";
