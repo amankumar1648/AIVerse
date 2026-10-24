@@ -1,235 +1,128 @@
-export const dynamic = "force-dynamic";
-
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
-import FavoriteButton from "@/components/FavoriteButton";
 
+export const dynamic = "force-dynamic";
 
-interface PageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
-
-
-export async function generateMetadata({params}: PageProps){
-
-  const {slug} = await params;
+export default async function ToolPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
   const tool = await prisma.tool.findUnique({
-    where:{
+    where: {
       slug,
     },
   });
 
-
-  return {
-    title: tool
-      ? `${tool.name} - AI Tool | AIVerse`
-      : "AI Tools | AIVerse",
-
-    description: tool?.description || "Discover AI tools on AIVerse",
-  };
-
-}
-
-
-
-export default async function ToolPage({params}: PageProps){
-
-  const {slug} = await params;
-
-
-  const tool = await prisma.tool.findUnique({
-
-    where:{
-      slug,
-    },
-
-  });
-
-
-  if(!tool){
-    notFound();
+  if (!tool) {
+    return (
+      <main className="container-custom py-20">
+        <h1 className="text-3xl font-bold">
+          Tool not found
+        </h1>
+      </main>
+    );
   }
 
-
-
   return (
+    <main className="container-custom py-12">
 
-    <main className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-4xl mx-auto">
 
-      <div className="max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-8 items-center mb-10">
 
-
-        <div className="bg-white rounded-3xl shadow-lg p-8">
-
-
-          <div className="flex flex-col md:flex-row gap-8">
-
-
+          <div className="relative w-32 h-32 rounded-3xl border bg-white">
             <Image
-
-              src={tool.image || "/tools/default.png"}
-
+              src={tool.image}
               alt={tool.name}
-
-              width={160}
-
-              height={160}
-
-              className="rounded-2xl border object-contain"
-
+              fill
+              className="object-contain p-5"
             />
-
-
-
-            <div className="flex-1">
-
-
-              <h1 className="text-5xl font-bold mb-4">
-                {tool.name}
-              </h1>
-
-
-
-              <div className="flex gap-3 flex-wrap mb-6">
-
-                <span className="bg-yellow-100 px-4 py-2 rounded-full">
-                  ⭐ {tool.rating}
-                </span>
-
-                <span className="bg-blue-100 px-4 py-2 rounded-full">
-                  {tool.category}
-                </span>
-
-                <span className="bg-green-100 px-4 py-2 rounded-full">
-                  {tool.pricing}
-                </span>
-
-              </div>
-
-
-
-              <p className="text-gray-600 text-lg mb-6">
-                {tool.description}
-              </p>
-
-
-
-              <a
-
-                href={tool.website}
-
-                target="_blank"
-
-                className="bg-black text-white px-8 py-3 rounded-xl inline-block"
-
-              >
-                Visit Official Website →
-              </a>
-
-
-
-              <div className="mt-5">
-                <FavoriteButton toolId={tool.id}/>
-              </div>
-
-
-            </div>
-
-
           </div>
 
+          <div>
+            <h1 className="text-4xl font-bold">
+              {tool.name}
+            </h1>
 
-
-          <section className="mt-10 grid md:grid-cols-2 gap-6">
-
-
-            <div className="border rounded-xl p-6">
-
-              <h2 className="text-2xl font-bold mb-3">
-                🚀 Features
-              </h2>
-
-              <p>
-                {tool.features || "No features added yet."}
-              </p>
-
-            </div>
-
-
-
-            <div className="border rounded-xl p-6">
-
-              <h2 className="text-2xl font-bold mb-3">
-                🎯 Best For
-              </h2>
-
-              <p>
-                {tool.bestFor || "General AI users"}
-              </p>
-
-            </div>
-
-
-
-            <div className="border rounded-xl p-6">
-
-              <h2 className="text-2xl font-bold mb-3">
-                ✅ Pros
-              </h2>
-
-              <p>
-                {tool.pros || "No pros added yet."}
-              </p>
-
-            </div>
-
-
-
-            <div className="border rounded-xl p-6">
-
-              <h2 className="text-2xl font-bold mb-3">
-                ❌ Cons
-              </h2>
-
-              <p>
-                {tool.cons || "No cons added yet."}
-              </p>
-
-            </div>
-
-
-
-          </section>
-
-
-
-          <section className="mt-8 border rounded-xl p-6">
-
-            <h2 className="text-2xl font-bold mb-3">
-              🔄 Alternatives
-            </h2>
-
-            <p>
-              {tool.alternatives || "No alternatives added yet."}
+            <p className="text-gray-500 mt-2">
+              {tool.category}
             </p>
 
-          </section>
+            <div className="flex gap-3 mt-4">
+              <span className="bg-yellow-100 px-4 py-2 rounded-full">
+                ⭐ {tool.rating}
+              </span>
 
-
+              <span className="bg-blue-100 px-4 py-2 rounded-full">
+                {tool.pricing}
+              </span>
+            </div>
+          </div>
 
         </div>
 
 
+        <p className="text-lg mb-8">
+          {tool.description}
+        </p>
+
+
+        {tool.features && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-2">
+              Features
+            </h2>
+            <p>{tool.features}</p>
+          </section>
+        )}
+
+
+        {tool.pros && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-2">
+              Pros
+            </h2>
+            <p>{tool.pros}</p>
+          </section>
+        )}
+
+
+        {tool.cons && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-2">
+              Cons
+            </h2>
+            <p>{tool.cons}</p>
+          </section>
+        )}
+
+
+        {tool.alternatives && (
+           <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-2">
+              Alternatives
+            </h2>
+            <p>{tool.alternatives}</p>
+          </section>
+        )}
+
+
+        <a
+          href={tool.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-black text-white px-8 py-3 rounded-xl"
+        >
+          Visit Website →
+        </a>
+
+
       </div>
 
-
     </main>
-
   );
-
 }
 
