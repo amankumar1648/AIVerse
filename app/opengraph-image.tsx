@@ -2,39 +2,38 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "AIVerse - Discover the Best AI Tools";
-
 export const size = {
   width: 1200,
   height: 630,
 };
 
-export default function Image() {
+export const contentType = "image/png";
+
+export default function OpenGraphImage() {
   return new ImageResponse(
     (
       <div
         style={{
-          width: "100%",
-          height: "100%",
+          width: "1200px",
+          height: "630px",
+          background: "black",
+          color: "white",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          background: "#000",
-          color: "white",
-          fontSize: 80,
-          fontWeight: 700,
+          fontSize: "70px",
+          fontWeight: "bold",
         }}
       >
-        <div>AIVerse 🚀</div>
-
+        <div>AIVerse</div>
         <div
           style={{
-            fontSize: 40,
-            marginTop: 30,
+            fontSize: "40px",
+            marginTop: "20px",
           }}
         >
-          Discover the Best AI Tools
+          Discover The Best AI Tools
         </div>
       </div>
     ),
