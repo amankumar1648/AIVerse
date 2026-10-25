@@ -86,12 +86,7 @@ export default async function ToolPage({
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": tool.rating,
-        "bestRating": "5"
-      }
+}
     }),
   }}
 />
