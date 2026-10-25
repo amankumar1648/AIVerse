@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
+  metadataBase: new URL("https://aiverse2.netlify.app"),
   title: "AIVerse - AI Tools Directory",
   description: "Discover the best AI tools, software and resources.",
   verification: {
