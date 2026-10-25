@@ -71,7 +71,6 @@ export default async function ToolPage({
     <main className="container-custom py-12">
 
 <article className="max-w-4xl mx-auto">
-
 <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
