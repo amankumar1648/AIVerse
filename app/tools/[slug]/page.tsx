@@ -4,7 +4,6 @@ import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
-
 export async function generateMetadata({
   params,
 }: {
@@ -17,23 +16,30 @@ export async function generateMetadata({
     where: { slug },
   });
 
-
   if (!tool) {
     return {
       title: "AI Tool Not Found - AIVerse",
     };
   }
 
-
   return {
     title: `${tool.name} - Features, Pricing & Review | AIVerse`,
-    description:
-      tool.description,
+    description: `${tool.description} Explore features, pricing, pros, cons and alternatives of ${tool.name} on AIVerse.`,
+
+    openGraph: {
+      title: `${tool.name} - AI Tool Review | AIVerse`,
+      description: tool.description,
+      images: [tool.image],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.name} - AI Tool Review | AIVerse`,
+      description: tool.description,
+      images: [tool.image],
+    },
   };
 }
-
-
-
 export default async function ToolPage({
   params,
 }: {
@@ -64,8 +70,32 @@ export default async function ToolPage({
   return (
     <main className="container-custom py-12">
 
-      <article className="max-w-4xl mx-auto">
+<article className="max-w-4xl mx-auto">
 
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": tool.name,
+      "description": tool.description,
+      "applicationCategory": tool.category,
+      "operatingSystem": "Web",
+      "image": tool.image,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": tool.rating,
+        "bestRating": "5"
+      }
+    }),
+  }}
+/>
 
         <div className="flex flex-col md:flex-row gap-8 items-center mb-10">
 
