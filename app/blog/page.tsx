@@ -1,60 +1,65 @@
-import Link from "next/link";
-import type { Route } from "next";
+export const metadata = {
+  title: "AIVerse Blog - AI Tools, Guides and Latest Updates",
+  description:
+    "Explore AI tool guides, comparisons, tutorials and the latest artificial intelligence trends.",
+};
+
+const posts = [
+  {
+    title: "Best AI Tools for Students in 2026",
+    description:
+      "Discover the best AI tools that help students with learning, research, productivity and coding.",
+    link: "/blog/best-ai-tools-for-students-2026",
+  },
+  {
+    title: "ChatGPT vs Gemini vs Claude: Which AI Assistant is Best?",
+    description:
+      "A detailed comparison of popular AI assistants based on features, performance and use cases.",
+    link: "/blog/chatgpt-vs-gemini-vs-claude-2026",
+  },
+];
+
 export default function BlogPage() {
-const posts: {
-  title: string;
-  description: string;
-  link: Route;
-}[] = [
-    {
-      title: "Best AI Tools for Students in 2026",
-      description:
-        "Discover the best AI tools that help students with studying, coding, productivity and learning.",
-      link: "/blog/best-ai-tools-for-students-2026",
-    },
-    {
-      title: "ChatGPT vs Gemini vs Claude in 2026",
-      description:
-        "Compare ChatGPT, Gemini and Claude to find the best AI assistant for students, coding, writing and productivity.",
-      link: "/blog/chatgpt-vs-gemini-vs-claude-2026",
-    },
-  ];
-
   return (
-    <main className="max-w-5xl mx-auto p-8">
+    <main className="container-custom py-16">
+      <div className="max-w-5xl mx-auto">
 
-      <h1 className="text-4xl font-bold mb-8">
-        AIVerse Blog
-      </h1>
+        <h1 className="text-4xl font-bold mb-6">
+          AIVerse Blog
+        </h1>
 
-      <div className="grid gap-6">
+        <p className="text-gray-700 text-lg leading-8 mb-10">
+          Learn about artificial intelligence, discover useful AI tools,
+          compare platforms and stay updated with the latest AI trends.
+        </p>
 
-        {posts.map((post) => (
-          <article
-            key={post.link}
-            className="border rounded-xl p-6"
-          >
+        <div className="grid gap-8 md:grid-cols-2">
 
-            <h2 className="text-2xl font-bold">
-              {post.title}
-            </h2>
-
-            <p className="mt-3 text-gray-600">
-              {post.description}
-            </p>
-
-            <Link
-              href={post.link}
-              className="inline-block mt-5 font-semibold text-blue-600"
+          {posts.map((post) => (
+            <article
+              key={post.link}
+              className="border rounded-xl p-6 hover:shadow-lg transition"
             >
-              Read More →
-            </Link>
+              <h2 className="text-2xl font-bold mb-3">
+                {post.title}
+              </h2>
 
-          </article>
-        ))}
+              <p className="text-gray-700 mb-5">
+                {post.description}
+              </p>
+
+              <a
+                href={post.link}
+                className="font-semibold text-blue-600"
+              >
+                Read Article →
+              </a>
+            </article>
+          ))}
+
+        </div>
 
       </div>
-
     </main>
   );
 }
