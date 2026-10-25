@@ -80,8 +80,167 @@ async function main() {
         cons: "Less useful for complex writing",
         bestFor: "Businesses",
         alternatives: "Jasper AI"
-      }
-    ],
+     },
+     {
+  name: "OpenRouter",
+  slug: "openrouter",
+  category: "AI Platform",
+  description: "Platform providing access to multiple AI models through one API.",
+  image: "/tools/openrouter.png",
+  rating: 4.4,
+  pricing: "Free + Paid",
+  website: "https://openrouter.ai",
+  features: "Multiple AI models, API access",
+  pros: "Many models in one place",
+  cons: "Technical setup required",
+  bestFor: "Developers",
+  alternatives: "Hugging Face"
+},
+
+{
+  name: "Stable Diffusion",
+  slug: "stable-diffusion",
+  category: "AI Image Generator",
+  description: "Open-source AI image generation model.",
+  image: "/tools/stable-diffusion.png",
+  rating: 4.5,
+  pricing: "Free",
+  website: "https://stability.ai",
+  features: "Image generation, customization",
+  pros: "Open source",
+  cons: "Requires setup",
+  bestFor: "Artists and developers",
+  alternatives: "Midjourney"
+},
+
+{
+  name: "Adobe Podcast AI",
+  slug: "adobe-podcast-ai",
+  category: "AI Audio",
+  description: "AI tool for improving podcast audio quality.",
+  image: "/tools/adobe-podcast.png",
+  rating: 4.4,
+  pricing: "Free",
+  website: "https://podcast.adobe.com",
+  features: "Audio enhancement",
+  pros: "Easy improvement",
+  cons: "Limited editing",
+  bestFor: "Podcasters",
+  alternatives: "ElevenLabs"
+},
+
+{
+  name: "Tome AI",
+  slug: "tome-ai",
+  category: "AI Productivity",
+  description: "AI presentation creation tool.",
+  image: "/tools/tome.png",
+  rating: 4.3,
+  pricing: "Free + Paid",
+  website: "https://tome.app",
+  features: "AI presentations",
+  pros: "Fast creation",
+  cons: "Limited templates",
+  bestFor: "Students",
+  alternatives: "Gamma AI"
+},
+
+{
+  name: "Writesonic",
+  slug: "writesonic",
+  category: "AI Writing",
+  description: "AI writing assistant for blogs and marketing.",
+  image: "/tools/writesonic.png",
+  rating: 4.3,
+  pricing: "Free + Paid",
+  website: "https://writesonic.com",
+  features: "Article writing, SEO content",
+  pros: "Good templates",
+  cons: "Quality varies",
+  bestFor: "Writers",
+  alternatives: "Jasper AI"
+},
+
+{
+  name: "Tabnine",
+  slug: "tabnine",
+  category: "AI Coding",
+  description: "AI coding assistant for developers.",
+  image: "/tools/tabnine.png",
+  rating: 4.2,
+  pricing: "Free + Paid",
+  website: "https://tabnine.com",
+  features: "Code completion",
+  pros: "Developer focused",
+  cons: "Less popular",
+  bestFor: "Programmers",
+  alternatives: "GitHub Copilot"
+},
+
+{
+  name: "Codeium",
+  slug: "codeium",
+  category: "AI Coding",
+  description: "Free AI coding assistant.",
+  image: "/tools/codeium.png",
+  rating: 4.4,
+  pricing: "Free",
+  website: "https://codeium.com",
+  features: "Code generation",
+  pros: "Free usage",
+  cons: "Requires extension",
+  bestFor: "Students learning coding",
+  alternatives: "Cursor AI"
+},
+
+{
+  name: "Descript AI",
+  slug: "descript-ai",
+  category: "AI Video",
+  description: "AI video editor with text-based editing.",
+  image: "/tools/descript.png",
+  rating: 4.4,
+  pricing: "Free + Paid",
+  website: "https://descript.com",
+  features: "Video editing, transcription",
+  pros: "Easy editing",
+  cons: "Paid features",
+  bestFor: "Creators",
+  alternatives: "Runway AI"
+},
+
+{
+  name: "Otter AI",
+  slug: "otter-ai",
+  category: "AI Productivity",
+  description: "AI meeting transcription assistant.",
+  image: "/tools/otter.png",
+  rating: 4.3,
+  pricing: "Free + Paid",
+  website: "https://otter.ai",
+  features: "Transcription, notes",
+  pros: "Accurate notes",
+  cons: "Limits on free plan",
+  bestFor: "Students and teams",
+  alternatives: "Notion AI"
+},
+
+{
+  name: "Replit AI",
+  slug: "replit-ai",
+  category: "AI Coding",
+  description: "AI coding assistant inside Replit.",
+  image: "/tools/replit.png",
+  rating: 4.4,
+  pricing: "Free + Paid",
+  website: "https://replit.com",
+  features: "AI coding and deployment",
+  pros: "Beginner friendly",
+  cons: "Advanced users may need more",
+  bestFor: "Students and developers",
+  alternatives: "Cursor AI"
+}
+ ],
     skipDuplicates: true
   });
 
