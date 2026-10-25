@@ -3,37 +3,13 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://aiverse2.netlify.app"),
-
-  title: {
-    default: "AIVerse - Discover The Best AI Tools",
-    template: "%s | AIVerse",
-  },
-
-  description:
-    "AIVerse is an AI tools directory where you can discover the best AI tools for students, developers, creators and professionals.",
-
-  keywords: [
-    "AI tools",
-    "AI directory",
-    "ChatGPT",
-    "Claude",
-    "Gemini",
-    "AI software",
-    "AI tools for students",
-  ],
-
-  openGraph: {
-    title: "AIVerse - Discover The Best AI Tools",
-    description:
-      "Explore the best AI tools for productivity, coding, writing, design and more.",
-    url: "https://aiverse2.netlify.app",
-    siteName: "AIVerse",
-    type: "website",
+export const metadata = {
+  title: "AIVerse - AI Tools Directory",
+  description: "Discover the best AI tools, software and resources.",
+  verification: {
+    google: "QaBfA4YZNM2IxJTzKGazbULwxG0r2xex4d18Pu4Ivvc",
   },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -81,3 +57,4 @@ export default function RootLayout({
     </html>
   );
 }
+
