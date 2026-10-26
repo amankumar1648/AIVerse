@@ -27,19 +27,17 @@ export default async function Home() {
     <main>
 
 
-      <section className="container-custom py-20 text-center">
+<section className="container-custom py-20 text-center">
 
-        <h1 className="text-5xl md:text-6xl font-bold">
-          Discover The Best AI Tools
-        </h1>
+  <h1 className="text-5xl md:text-6xl font-bold">
+    Discover The Best AI Tools in One Place
+  </h1>
 
-        <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-          AIVerse helps students, developers, creators and professionals
-          discover useful AI tools for productivity, coding, design,
-          writing and creativity.
-        </p>
-
-
+  <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+    AIVerse is a growing AI tools directory where students, developers,
+    creators and professionals can discover, compare and explore the best
+    AI tools for productivity, coding, writing, design and creativity.
+  </p>
         <div className="mt-8 flex justify-center gap-4">
 
           <Link
