@@ -139,7 +139,49 @@ export default async function Home() {
       </section>
 
 
+      <section className="container-custom py-12">
 
+  <h2 className="text-3xl font-bold mb-8 text-center">
+    Why Choose AIVerse?
+  </h2>
+
+  <div className="grid md:grid-cols-3 gap-6">
+
+    <div className="border rounded-2xl p-6">
+      <h3 className="text-xl font-bold mb-3">
+        Curated AI Tools
+      </h3>
+      <p className="text-gray-700">
+        We organize useful AI tools across different categories
+        to help users quickly find the right solution.
+      </p>
+    </div>
+
+
+    <div className="border rounded-2xl p-6">
+      <h3 className="text-xl font-bold mb-3">
+        Compare Features
+      </h3>
+      <p className="text-gray-700">
+        Explore AI tools with information about features,
+        pricing, ratings and use cases.
+      </p>
+    </div>
+
+
+    <div className="border rounded-2xl p-6">
+      <h3 className="text-xl font-bold mb-3">
+        Updated Information
+      </h3>
+      <p className="text-gray-700">
+        We aim to provide helpful information while users
+        can always verify details from official websites.
+      </p>
+    </div>
+
+  </div>
+
+</section>
       <section className="container-custom py-16">
 
         <div className="max-w-4xl mx-auto">
