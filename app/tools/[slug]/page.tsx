@@ -241,7 +241,47 @@ export default async function ToolPage({
           </section>
         )}
 
+    <section className="mb-8">
 
+  <h2 className="text-2xl font-bold mb-5">
+    Related AI Tools
+  </h2>
+
+  <div className="grid md:grid-cols-3 gap-5">
+
+    {(
+      await prisma.tool.findMany({
+        where: {
+          category: tool.category,
+          NOT: {
+            id: tool.id,
+          },
+        },
+        take: 3,
+      })
+    ).map((relatedTool) => (
+
+      <a
+        key={relatedTool.id}
+        href={`/tools/${relatedTool.slug}`}
+        className="border rounded-xl p-5"
+      >
+
+        <h3 className="font-bold">
+          {relatedTool.name}
+        </h3>
+
+        <p className="text-sm mt-2">
+          {relatedTool.description}
+        </p>
+
+      </a>
+
+    ))}
+
+  </div>
+
+</section>
 
         <div className="border rounded-2xl p-6 mb-8">
 
