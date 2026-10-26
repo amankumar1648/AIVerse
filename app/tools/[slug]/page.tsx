@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
@@ -25,6 +25,19 @@ export async function generateMetadata({
   return {
     title: `${tool.name} - Features, Pricing & Review | AIVerse`,
     description: tool.description,
+
+    openGraph: {
+      title: `${tool.name} - AI Tool Review | AIVerse`,
+      description: tool.description,
+      images: [tool.image],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.name} - AI Tool Review | AIVerse`,
+      description: tool.description,
+      images: [tool.image],
+    },
   };
 }
 
@@ -56,6 +69,7 @@ export default async function ToolPage({
   return (
     <main className="container-custom py-12">
 
+      {/* Google Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -89,6 +103,30 @@ export default async function ToolPage({
               "ratingCount": "1",
               "bestRating": "5",
               "worstRating": "1"
+            },
+
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://aiverse2.netlify.app"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "AI Tools",
+                  "item": "https://aiverse2.netlify.app/tools"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": tool.name,
+                  "item": `https://aiverse2.netlify.app/tools/${tool.slug}`
+                }
+              ]
             }
 
           }),
@@ -131,6 +169,7 @@ export default async function ToolPage({
                 ⭐ {tool.rating}
               </span>
 
+
               <span className="bg-blue-100 px-4 py-2 rounded-full">
                 {tool.pricing}
               </span>
@@ -142,17 +181,19 @@ export default async function ToolPage({
         </div>
 
 
+
         <section className="mb-8">
 
           <h2 className="text-2xl font-bold mb-3">
             About {tool.name}
           </h2>
 
-          <p>
+          <p className="text-lg text-gray-700">
             {tool.description}
           </p>
 
         </section>
+
 
 
         {tool.features && (
@@ -161,31 +202,57 @@ export default async function ToolPage({
               Features
             </h2>
 
-            <p>{tool.features}</p>
+            <p className="text-gray-700">
+              {tool.features}
+            </p>
+
           </section>
         )}
+
 
 
         {tool.pros && (
           <section className="mb-8">
+
             <h2 className="text-2xl font-bold mb-3">
               Pros
             </h2>
 
-            <p>{tool.pros}</p>
+            <p className="text-gray-700">
+              {tool.pros}
+            </p>
+
           </section>
         )}
+
 
 
         {tool.cons && (
           <section className="mb-8">
+
             <h2 className="text-2xl font-bold mb-3">
               Cons
             </h2>
 
-            <p>{tool.cons}</p>
+            <p className="text-gray-700">
+              {tool.cons}
+            </p>
+
           </section>
         )}
+
+
+
+        <div className="border rounded-2xl p-6 mb-8">
+
+          <p className="text-gray-600">
+            AIVerse helps users discover AI tools, features,
+            pricing and alternatives. Always check the official
+            website for the latest information.
+          </p>
+
+        </div>
+
 
 
         <a
