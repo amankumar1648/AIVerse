@@ -4,7 +4,6 @@ import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
-
 export async function generateMetadata({
   params,
 }: {
@@ -17,13 +16,11 @@ export async function generateMetadata({
     where: { slug },
   });
 
-
   if (!tool) {
     return {
       title: "AI Tool Not Found - AIVerse",
     };
   }
-
 
   return {
     title: `${tool.name} - Features, Pricing & Review | AIVerse`,
@@ -45,7 +42,6 @@ export async function generateMetadata({
 }
 
 
-
 export default async function ToolPage({
   params,
 }: {
@@ -53,7 +49,6 @@ export default async function ToolPage({
 }) {
 
   const { slug } = await params;
-
 
   const tool = await prisma.tool.findUnique({
     where: {
@@ -73,10 +68,10 @@ export default async function ToolPage({
   }
 
 
-
   return (
     <main className="container-custom py-12">
 
+      {/* Software Application Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -93,14 +88,52 @@ export default async function ToolPage({
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": tool.rating,
+              "ratingCount": "1",
+              "bestRating": "5",
+              "worstRating": "1"
             }
           }),
         }}
       />
 
 
-      <article className="max-w-4xl mx-auto">
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://aiverse2.netlify.app"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "AI Tools",
+                "item": "https://aiverse2.netlify.app/tools"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": tool.name,
+                "item": `https://aiverse2.netlify.app/tools/${tool.slug}`
+              }
+            ]
+          }),
+        }}
+      />
 
+
+      <article className="max-w-4xl mx-auto">
 
         <div className="flex flex-col md:flex-row gap-8 items-center mb-10">
 
@@ -122,18 +155,15 @@ export default async function ToolPage({
               {tool.name}
             </h1>
 
-
             <p className="text-gray-500 mt-2">
               {tool.category}
             </p>
-
 
             <div className="flex gap-3 mt-4">
 
               <span className="bg-yellow-100 px-4 py-2 rounded-full">
                 ⭐ {tool.rating}
               </span>
-
 
               <span className="bg-blue-100 px-4 py-2 rounded-full">
                 {tool.pricing}
@@ -146,9 +176,7 @@ export default async function ToolPage({
         </div>
 
 
-
         <section className="mb-8">
-
           <h2 className="text-2xl font-bold mb-3">
             About {tool.name}
           </h2>
@@ -156,14 +184,11 @@ export default async function ToolPage({
           <p className="text-lg text-gray-700">
             {tool.description}
           </p>
-
         </section>
-
 
 
         {tool.bestFor && (
           <section className="mb-8">
-
             <h2 className="text-2xl font-bold mb-3">
               Best For
             </h2>
@@ -171,15 +196,12 @@ export default async function ToolPage({
             <p className="text-gray-700">
               {tool.bestFor}
             </p>
-
           </section>
         )}
 
 
-
         {tool.features && (
           <section className="mb-8">
-
             <h2 className="text-2xl font-bold mb-3">
               Features
             </h2>
@@ -187,15 +209,12 @@ export default async function ToolPage({
             <p className="text-gray-700">
               {tool.features}
             </p>
-
           </section>
         )}
 
 
-
         {tool.pros && (
           <section className="mb-8">
-
             <h2 className="text-2xl font-bold mb-3">
               Pros
             </h2>
@@ -203,15 +222,12 @@ export default async function ToolPage({
             <p className="text-gray-700">
               {tool.pros}
             </p>
-
           </section>
         )}
 
 
-
         {tool.cons && (
           <section className="mb-8">
-
             <h2 className="text-2xl font-bold mb-3">
               Cons
             </h2>
@@ -219,15 +235,12 @@ export default async function ToolPage({
             <p className="text-gray-700">
               {tool.cons}
             </p>
-
           </section>
         )}
 
 
-
         {tool.alternatives && (
           <section className="mb-8">
-
             <h2 className="text-2xl font-bold mb-3">
               Alternatives
             </h2>
@@ -235,22 +248,8 @@ export default async function ToolPage({
             <p className="text-gray-700">
               {tool.alternatives}
             </p>
-
           </section>
         )}
-
-
-
-        <div className="border rounded-2xl p-6 mb-8">
-
-          <p className="text-gray-600">
-            AIVerse provides information to help users discover AI tools.
-            Features, pricing and availability may change, so always check
-            the official website for the latest details.
-          </p>
-
-        </div>
-
 
 
         <a
