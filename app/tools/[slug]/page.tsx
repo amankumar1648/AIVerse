@@ -25,19 +25,6 @@ export async function generateMetadata({
   return {
     title: `${tool.name} - Features, Pricing & Review | AIVerse`,
     description: tool.description,
-
-    openGraph: {
-      title: `${tool.name} - AI Tool Review | AIVerse`,
-      description: tool.description,
-      images: [tool.image],
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title: `${tool.name} - AI Tool Review | AIVerse`,
-      description: tool.description,
-      images: [tool.image],
-    },
   };
 }
 
@@ -51,9 +38,7 @@ export default async function ToolPage({
   const { slug } = await params;
 
   const tool = await prisma.tool.findUnique({
-    where: {
-      slug,
-    },
+    where: { slug },
   });
 
 
@@ -71,24 +56,33 @@ export default async function ToolPage({
   return (
     <main className="container-custom py-12">
 
-      {/* Software Application Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
+
             "@context": "https://schema.org",
+
             "@type": "SoftwareApplication",
+
             "name": tool.name,
+
             "description": tool.description,
+
             "applicationCategory": "AI Software",
+
             "operatingSystem": "Web",
+
             "url": `https://aiverse2.netlify.app/tools/${tool.slug}`,
+
             "image": `https://aiverse2.netlify.app${tool.image}`,
+
             "offers": {
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD"
             },
+
             "aggregateRating": {
               "@type": "AggregateRating",
               "ratingValue": tool.rating,
@@ -96,44 +90,14 @@ export default async function ToolPage({
               "bestRating": "5",
               "worstRating": "1"
             }
-          }),
-        }}
-      />
 
-
-      {/* Breadcrumb Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://aiverse2.netlify.app"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "AI Tools",
-                "item": "https://aiverse2.netlify.app/tools"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": tool.name,
-                "item": `https://aiverse2.netlify.app/tools/${tool.slug}`
-              }
-            ]
           }),
         }}
       />
 
 
       <article className="max-w-4xl mx-auto">
+
 
         <div className="flex flex-col md:flex-row gap-8 items-center mb-10">
 
@@ -155,9 +119,11 @@ export default async function ToolPage({
               {tool.name}
             </h1>
 
+
             <p className="text-gray-500 mt-2">
               {tool.category}
             </p>
+
 
             <div className="flex gap-3 mt-4">
 
@@ -177,27 +143,16 @@ export default async function ToolPage({
 
 
         <section className="mb-8">
+
           <h2 className="text-2xl font-bold mb-3">
             About {tool.name}
           </h2>
 
-          <p className="text-lg text-gray-700">
+          <p>
             {tool.description}
           </p>
+
         </section>
-
-
-        {tool.bestFor && (
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold mb-3">
-              Best For
-            </h2>
-
-            <p className="text-gray-700">
-              {tool.bestFor}
-            </p>
-          </section>
-        )}
 
 
         {tool.features && (
@@ -206,9 +161,7 @@ export default async function ToolPage({
               Features
             </h2>
 
-            <p className="text-gray-700">
-              {tool.features}
-            </p>
+            <p>{tool.features}</p>
           </section>
         )}
 
@@ -219,9 +172,7 @@ export default async function ToolPage({
               Pros
             </h2>
 
-            <p className="text-gray-700">
-              {tool.pros}
-            </p>
+            <p>{tool.pros}</p>
           </section>
         )}
 
@@ -232,22 +183,7 @@ export default async function ToolPage({
               Cons
             </h2>
 
-            <p className="text-gray-700">
-              {tool.cons}
-            </p>
-          </section>
-        )}
-
-
-        {tool.alternatives && (
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold mb-3">
-              Alternatives
-            </h2>
-
-            <p className="text-gray-700">
-              {tool.alternatives}
-            </p>
+            <p>{tool.cons}</p>
           </section>
         )}
 
