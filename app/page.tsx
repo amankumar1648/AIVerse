@@ -23,21 +23,44 @@ export default async function Home() {
   ];
 
 
+  const faqs = [
+    {
+      q: "What is AIVerse?",
+      a: "AIVerse is an AI tools directory that helps users discover, compare and explore useful AI software for different needs."
+    },
+    {
+      q: "Who can use AIVerse?",
+      a: "Students, developers, creators, businesses and professionals can use AIVerse to find AI tools."
+    },
+    {
+      q: "Are AI tools on AIVerse free?",
+      a: "AI tools have different pricing models. Some are free, some offer free plans and others require payment."
+    },
+    {
+      q: "How does AIVerse organize AI tools?",
+      a: "Tools are organized by categories, features, ratings and use cases to make discovery easier."
+    }
+  ];
+
+
   return (
     <main>
 
 
-<section className="container-custom py-20 text-center">
+      <section className="container-custom py-20 text-center">
 
-  <h1 className="text-5xl md:text-6xl font-bold">
-    Discover The Best AI Tools in One Place
-  </h1>
+        <h1 className="text-5xl md:text-6xl font-bold">
+          Discover The Best AI Tools in One Place
+        </h1>
 
-  <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-    AIVerse is a growing AI tools directory where students, developers,
-    creators and professionals can discover, compare and explore the best
-    AI tools for productivity, coding, writing, design and creativity.
-  </p>
+
+        <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+          AIVerse helps students, developers, creators and professionals
+          discover, compare and explore the best AI tools for productivity,
+          coding, writing, design and creativity.
+        </p>
+
+
         <div className="mt-8 flex justify-center gap-4">
 
           <Link
@@ -79,12 +102,14 @@ export default async function Home() {
             >
 
               <div className="relative w-20 h-20 mb-5">
+
                 <Image
                   src={tool.image}
                   alt={tool.name}
                   fill
                   className="object-contain"
                 />
+
               </div>
 
 
@@ -93,7 +118,7 @@ export default async function Home() {
               </h3>
 
 
-              <p className="text-gray-500 mt-2">
+              <p className="text-gray-500">
                 {tool.category}
               </p>
 
@@ -113,6 +138,7 @@ export default async function Home() {
 
 
 
+
       <section className="container-custom py-12">
 
         <h2 className="text-3xl font-bold mb-8">
@@ -122,7 +148,7 @@ export default async function Home() {
 
         <div className="grid md:grid-cols-5 gap-4">
 
-          {categories.map((category) => (
+          {categories.map((category)=>(
 
             <Link
               key={category}
@@ -139,96 +165,57 @@ export default async function Home() {
       </section>
 
 
+
+
       <section className="container-custom py-12">
 
-  <h2 className="text-3xl font-bold mb-8 text-center">
-    Why Choose AIVerse?
-  </h2>
-
-  <div className="grid md:grid-cols-3 gap-6">
-
-    <div className="border rounded-2xl p-6">
-      <h3 className="text-xl font-bold mb-3">
-        Curated AI Tools
-      </h3>
-      <p className="text-gray-700">
-        We organize useful AI tools across different categories
-        to help users quickly find the right solution.
-      </p>
-    </div>
+        <h2 className="text-3xl font-bold mb-6">
+          Why Choose AIVerse?
+        </h2>
 
 
-    <div className="border rounded-2xl p-6">
-      <h3 className="text-xl font-bold mb-3">
-        Compare Features
-      </h3>
-      <p className="text-gray-700">
-        Explore AI tools with information about features,
-        pricing, ratings and use cases.
-      </p>
-    </div>
+        <p className="text-gray-700 max-w-4xl">
+          AIVerse makes AI discovery simple by organizing useful tools
+          in one place. Users can explore software based on categories,
+          features, ratings and practical use cases.
+        </p>
+
+      </section>
 
 
-    <div className="border rounded-2xl p-6">
-      <h3 className="text-xl font-bold mb-3">
-        Updated Information
-      </h3>
-      <p className="text-gray-700">
-        We aim to provide helpful information while users
-        can always verify details from official websites.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-      <section className="container-custom py-16">
-
-        <div className="max-w-4xl mx-auto">
-
-          <h2 className="text-3xl font-bold mb-4">
-            What is AIVerse?
-          </h2>
-
-          <p className="text-gray-700">
-            AIVerse is an AI tools directory that helps users discover
-            and compare artificial intelligence tools. We organize tools
-            by categories, features, pricing and use cases to make AI
-            discovery easier.
-          </p>
 
 
-          <h2 className="text-3xl font-bold mt-10 mb-4">
-            How We Organize AI Tools
-          </h2>
+      <section className="container-custom py-12">
 
-          <p className="text-gray-700">
-            We collect useful information about AI platforms and present
-            it in a simple format. Users should always check official
-            websites for the latest pricing and availability.
-          </p>
+        <h2 className="text-3xl font-bold mb-8">
+          Frequently Asked Questions
+        </h2>
 
 
-          <div className="mt-8 flex gap-4">
+        <div className="space-y-6">
 
-            <Link
-              href="/about"
-              className="underline"
+          {faqs.map((faq)=>(
+
+            <div
+              key={faq.q}
+              className="border rounded-xl p-6"
             >
-              Learn More About Us
-            </Link>
+
+              <h3 className="text-xl font-bold">
+                {faq.q}
+              </h3>
 
 
-            <Link
-              href="/contact"
-              className="underline"
-            >
-              Contact AIVerse
-            </Link>
+              <p className="mt-3 text-gray-700">
+                {faq.a}
+              </p>
 
-          </div>
+            </div>
+
+          ))}
 
         </div>
+
 
       </section>
 
