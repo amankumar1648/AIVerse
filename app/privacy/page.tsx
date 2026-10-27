@@ -48,7 +48,8 @@ export default function PrivacyPage() {
           AIVerse may use cookies and third-party services such as
           Google AdSense to display relevant advertisements.
           These services may use cookies according to their own
-          privacy policies.
+          privacy policies. 
+          Google may use advertising cookies to provide personalized ads. Users can manage their ad preferences through Google's Ads Settings.
         </p>
 
         <h2 className="text-2xl font-bold mt-8 mb-3">
