@@ -41,7 +41,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t py-6 text-center text-gray-500">
-        © {new Date().getFullYear()} AIVerse. All rights reserved.
+       © 2026 AIVerse. All rights reserved.
       </div>
     </footer>
   );
