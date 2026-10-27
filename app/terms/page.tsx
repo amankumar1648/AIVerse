@@ -58,6 +58,16 @@ export default function TermsPage() {
         </p>
 
         <h2 className="text-2xl font-bold mt-8 mb-3">
+         User Submissions
+        </h2>
+
+        <p className="text-gray-700">
+        Users may submit AI tool information to AIVerse. By submitting
+        content, users confirm that the information is accurate and they
+        have the right to share it. AIVerse reserves the right to review,
+        modify or remove submitted content.
+        </p>
+        <h2 className="text-2xl font-bold mt-8 mb-3">
           Changes to Terms
         </h2>
 
