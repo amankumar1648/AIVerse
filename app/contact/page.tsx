@@ -1,57 +1,93 @@
-export const metadata = {
-  title: "Contact AIVerse - Get in Touch",
-  description:
-    "Contact AIVerse for questions, feedback, and suggestions about AI tools.",
-};
-
 export default function ContactPage() {
+
   return (
     <main className="container-custom py-16">
-      <div className="max-w-3xl mx-auto">
 
-        <h1 className="text-4xl font-bold mb-6">
+      <section className="text-center mb-16">
+
+        <h1 className="text-5xl font-bold">
           Contact AIVerse
         </h1>
 
-        <p className="text-gray-700 text-lg leading-8">
-          We welcome your questions, feedback, and suggestions.
-          If you have ideas for improving AIVerse or want to suggest
-          an AI tool to add to our directory, feel free to contact us.
+        <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+          Have questions, suggestions or feedback? We would love to
+          hear from you.
         </p>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4">
-          Get in Touch
-        </h2>
+      </section>
 
-        <p className="text-gray-700 leading-8">
-          For general inquiries, feedback, and support requests,
-          please contact us through our official email address:
-        </p>
 
-        <p className="mt-4 font-semibold">
-          Email: contact@aiverse.com
-        </p>
+      <section className="max-w-3xl mx-auto space-y-10">
 
-        <h2 className="text-2xl font-bold mt-10 mb-4">
-          Tool Suggestions
-        </h2>
 
-        <p className="text-gray-700 leading-8">
-          Developers, creators, and AI enthusiasts can suggest useful
-          AI tools through our submission page. We review submissions
-          before adding tools to the AIVerse directory.
-        </p>
+        <div className="border rounded-2xl p-8">
 
-        <h2 className="text-2xl font-bold mt-10 mb-4">
-          Response Time
-        </h2>
+          <h2 className="text-3xl font-bold mb-4">
+            Get In Touch
+          </h2>
 
-        <p className="text-gray-700 leading-8">
-          We try to review messages and suggestions as quickly as
-          possible. Thank you for helping us improve AIVerse.
-        </p>
+          <p className="text-gray-700">
+            If you have suggestions for improving AIVerse, want to
+            report incorrect information, or have ideas for new
+            features, please contact us.
+          </p>
 
-      </div>
+        </div>
+
+
+
+        <div className="border rounded-2xl p-8">
+
+          <h2 className="text-3xl font-bold mb-4">
+            Email
+          </h2>
+
+          <p className="text-gray-700">
+            You can reach us through our official email address:
+          </p>
+
+          <p className="mt-4 font-semibold">
+            support@aiverse.com
+          </p>
+
+        </div>
+
+
+
+        <div className="border rounded-2xl p-8">
+
+          <h2 className="text-3xl font-bold mb-4">
+            Tool Suggestions
+          </h2>
+
+          <p className="text-gray-700">
+            Found an AI tool that should be listed on AIVerse?
+            You can submit AI tools and help us build a better
+            AI discovery platform.
+          </p>
+
+        </div>
+
+
+
+        <div className="border rounded-2xl p-8">
+
+          <h2 className="text-3xl font-bold mb-4">
+            Transparency
+          </h2>
+
+          <p className="text-gray-700">
+            AIVerse values user feedback and continuously works to
+            improve the quality and accuracy of information provided
+            on the platform.
+          </p>
+
+        </div>
+
+
+      </section>
+
+
     </main>
   );
 }
