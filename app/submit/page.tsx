@@ -124,27 +124,22 @@ export default function SubmitPage() {
 
     <main className="min-h-screen p-8">
 
+<div className="max-w-xl mx-auto">
 
-      <div className="max-w-xl mx-auto">
+  <h1 className="text-4xl font-bold mb-6">
+    Submit AI Tool 🚀
+  </h1>
 
+  <p className="text-gray-600 mb-6">
+    Submit an AI tool to be listed on AIVerse. All submissions are
+    reviewed before publishing. Please provide accurate information
+    about the tool, pricing and official website.
+  </p>
 
-        <h1 className="text-4xl font-bold mb-6">
-
-          Submit AI Tool 🚀
-
-        </h1>
-
-
-
-        <form
-
-          onSubmit={submitTool}
-
-          className="space-y-4"
-
-        >
-
-
+  <form
+    onSubmit={submitTool}
+    className="space-y-4"
+  >
 
           <input
 
