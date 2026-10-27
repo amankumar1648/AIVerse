@@ -47,7 +47,7 @@ export default function ContactPage() {
           </p>
 
           <p className="mt-4 font-semibold">
-            support@aiverse.com
+           amanchhapola395@gmail.com
           </p>
 
         </div>
@@ -91,4 +91,5 @@ export default function ContactPage() {
     </main>
   );
 }
+
 
