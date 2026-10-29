@@ -8,16 +8,69 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://aiverse2.netlify.app"),
 
-  title: "AIVerse - AI Tools Directory",
+  title: {
+    default: "AIVerse - Discover the Best AI Tools Directory",
+    template: "%s | AIVerse",
+  },
 
   description:
-    "Discover the best AI tools, software and resources.",
+    "Discover, compare and explore the best AI tools for productivity, coding, writing, design, education and creativity.",
+
+  keywords: [
+    "AI tools",
+    "AI software",
+    "best AI tools",
+    "AI tools directory",
+    "AI productivity tools",
+    "AI coding tools",
+    "AI writing tools",
+    "AI image generators",
+  ],
+
+  authors: [
+    {
+      name: "AIVerse",
+    },
+  ],
+
+  creator: "AIVerse",
+  publisher: "AIVerse",
 
   verification: {
     google: "QaBfA4YZNM2IxJTzKGazbULwxG0r2xex4d18Pu4Ivvc",
   },
-};
 
+  openGraph: {
+    title: "AIVerse - Discover the Best AI Tools",
+    description:
+      "Explore and compare AI tools for coding, writing, productivity, design and creativity.",
+    url: "https://aiverse2.netlify.app",
+    siteName: "AIVerse",
+    images: [
+      {
+        url: "/icon.svg",
+        width: 512,
+        height: 512,
+        alt: "AIVerse AI Tools Directory",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "AIVerse - AI Tools Directory",
+    description:
+      "Discover the best AI tools and software in one place.",
+    images: ["/icon.svg"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 export default function RootLayout({
   children,
 }: Readonly<{
