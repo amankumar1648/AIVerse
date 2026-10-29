@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
-
 
 export async function generateMetadata({
   params,
@@ -18,31 +17,17 @@ export async function generateMetadata({
     where: { slug },
   });
 
-
   if (!tool) {
     return {
-      title: "AI Tool Not Found - AIVerse",
+      title: "AI Tool Not Found | AIVerse",
     };
   }
 
-
   return {
-    title: `${tool.name} AI Review (2026): Features, Pricing & Alternatives | AIVerse`,
-    description: `Explore ${tool.name} features, pricing, ratings and use cases on AIVerse.`,
-    keywords: [
-      tool.name,
-      `${tool.name} AI`,
-      `${tool.name} review`,
-      "AI tools",
-    ],
-    openGraph: {
-      title: `${tool.name} AI Review | AIVerse`,
-      description: tool.description,
-      images: [tool.image],
-    },
+    title: `${tool.name} AI Review, Features, Pricing & Alternatives | AIVerse`,
+    description: tool.description,
   };
 }
-
 
 
 export default async function ToolPage({
@@ -51,9 +36,7 @@ export default async function ToolPage({
   params: Promise<{ slug: string }>;
 }) {
 
-
   const { slug } = await params;
-
 
   const tool = await prisma.tool.findUnique({
     where: { slug },
@@ -71,42 +54,15 @@ export default async function ToolPage({
   }
 
 
-
   const relatedTools = await prisma.tool.findMany({
-
-    where:{
+    where: {
       category: tool.category,
-      NOT:{
+      NOT: {
         id: tool.id,
       },
     },
-
-    take:3,
-
+    take: 3,
   });
-
-
-
-  const softwareSchema = {
-
-    "@context":"https://schema.org",
-
-    "@type":"SoftwareApplication",
-
-    name:tool.name,
-
-    description:tool.description,
-
-    applicationCategory:"AI Software",
-
-    aggregateRating:{
-      "@type":"AggregateRating",
-      ratingValue:tool.rating,
-      bestRating:"5",
-    },
-
-  };
-
 
 
   return (
@@ -114,30 +70,19 @@ export default async function ToolPage({
     <main className="container-custom py-16">
 
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html:JSON.stringify(softwareSchema),
-        }}
-      />
-
-
+      {/* Hero */}
 
       <section className="grid md:grid-cols-2 gap-12 items-center">
 
 
-        <div className="bg-gray-50 rounded-3xl p-10">
+        <div className="relative w-48 h-48">
 
-          <div className="relative w-48 h-48 mx-auto">
-
-            <Image
-              src={tool.image}
-              alt={tool.name}
-              fill
-              className="object-contain"
-            />
-
-          </div>
+          <Image
+            src={tool.image}
+            alt={tool.name}
+            fill
+            className="object-contain"
+          />
 
         </div>
 
@@ -145,44 +90,30 @@ export default async function ToolPage({
 
         <div>
 
-
-          <span className="px-4 py-2 bg-blue-100 rounded-full">
-            {tool.category}
-          </span>
-
-
-
-          <h1 className="text-5xl font-bold mt-6">
-
+          <h1 className="text-5xl font-bold">
             {tool.name}
-
           </h1>
 
 
-
-          <p className="text-gray-600 text-lg mt-5">
-
+          <p className="mt-5 text-gray-600 text-lg">
             {tool.description}
-
           </p>
-
 
 
           <div className="flex gap-3 mt-6 flex-wrap">
 
-
             <span className="bg-yellow-100 px-4 py-2 rounded-full">
-
               ⭐ {tool.rating}/5
-
             </span>
 
 
+            <span className="bg-blue-100 px-4 py-2 rounded-full">
+              {tool.category}
+            </span>
+
 
             <span className="bg-green-100 px-4 py-2 rounded-full">
-
-              💰 {tool.pricing}
-
+              {tool.pricing}
             </span>
 
 
@@ -195,9 +126,7 @@ export default async function ToolPage({
             target="_blank"
             className="inline-block mt-8 bg-black text-white px-8 py-3 rounded-xl"
           >
-
-            Visit Official Website →
-
+            Visit Website →
           </a>
 
 
@@ -208,17 +137,18 @@ export default async function ToolPage({
 
 
 
+      {/* Details */}
 
-      <section className="mt-16 grid md:grid-cols-2 gap-8">
+      <section className="mt-20 grid md:grid-cols-2 gap-8">
 
 
-        <div className="border rounded-2xl p-6">
+        <div className="border rounded-2xl p-8">
 
           <h2 className="text-3xl font-bold mb-4">
             Features
           </h2>
 
-          <p className="text-gray-600">
+          <p className="text-gray-700">
             {tool.features || "No features added yet."}
           </p>
 
@@ -226,21 +156,30 @@ export default async function ToolPage({
 
 
 
-        <div className="border rounded-2xl p-6">
+        <div className="border rounded-2xl p-8">
 
           <h2 className="text-3xl font-bold mb-4">
             Best For
           </h2>
 
-          <p className="text-gray-600">
-            {tool.bestFor || "General AI usage."}
+          <p className="text-gray-700">
+            {tool.bestFor || "Students, developers and creators."}
           </p>
 
         </div>
 
 
+      </section>
 
-        <div className="border rounded-2xl p-6">
+
+
+
+      {/* Pros Cons */}
+
+      <section className="mt-12 grid md:grid-cols-2 gap-8">
+
+
+        <div className="border rounded-2xl p-8">
 
           <h2 className="text-3xl font-bold mb-4">
             ✅ Pros
@@ -254,7 +193,7 @@ export default async function ToolPage({
 
 
 
-        <div className="border rounded-2xl p-6">
+        <div className="border rounded-2xl p-8">
 
           <h2 className="text-3xl font-bold mb-4">
             ❌ Cons
@@ -272,7 +211,30 @@ export default async function ToolPage({
 
 
 
+      {/* Alternatives */}
+
+      <section className="mt-12 border rounded-2xl p-8">
+
+        <h2 className="text-3xl font-bold mb-4">
+          Alternatives
+        </h2>
+
+
+        <p>
+          {tool.alternatives || "Similar AI tools will be added soon."}
+        </p>
+
+
+      </section>
+
+
+
+
+
+      {/* Related */}
+
       <section className="mt-16">
+
 
         <h2 className="text-3xl font-bold mb-8">
           Related AI Tools
@@ -282,44 +244,27 @@ export default async function ToolPage({
         <div className="grid md:grid-cols-3 gap-6">
 
 
-        {relatedTools.map((item)=>(
+          {relatedTools.map((item)=>(
 
-          <Link
-            key={item.id}
-            href={`/tools/${item.slug}`}
-            className="border rounded-2xl p-6 hover:shadow-xl"
-          >
+            <Link
+              key={item.id}
+              href={`/tools/${item.slug}`}
+              className="border rounded-xl p-6 hover:shadow-xl"
+            >
 
-
-            <div className="relative w-16 h-16">
-
-              <Image
-                src={item.image}
-                alt={item.name}
-                fill
-                className="object-contain"
-              />
-
-            </div>
+              <h3 className="font-bold text-xl">
+                {item.name}
+              </h3>
 
 
-            <h3 className="font-bold text-xl mt-4">
-
-              {item.name}
-
-            </h3>
+              <p className="mt-2 text-gray-600">
+                {item.category}
+              </p>
 
 
-            <p className="text-gray-500">
+            </Link>
 
-              {item.category}
-
-            </p>
-
-
-          </Link>
-
-        ))}
+          ))}
 
 
         </div>
@@ -328,10 +273,8 @@ export default async function ToolPage({
       </section>
 
 
-
     </main>
 
   );
-
 }
 
