@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 
@@ -23,16 +22,28 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${tool.name} Review, Features & Pricing | AIVerse`,
-    description: `Explore ${tool.name} features, pricing, rating and use cases. Discover if this AI tool is right for you with AIVerse.`,
+    title: `${tool.name} AI Review (2026): Features, Pricing & Alternatives | AIVerse`,
+    description: `Explore ${tool.name} AI features, pricing, ratings, use cases and alternatives. Find detailed AI tool information on AIVerse.`,
+    keywords: [
+      tool.name,
+      `${tool.name} AI`,
+      `${tool.name} review`,
+      `${tool.name} pricing`,
+      `${tool.name} alternatives`,
+      "AI tools",
+      "AI software",
+    ],
+    alternates: {
+      canonical: `https://aiverse2.netlify.app/tools/${tool.slug}`,
+    },
     openGraph: {
-      title: `${tool.name} AI Tool Review | AIVerse`,
+      title: `${tool.name} AI Review | AIVerse`,
       description: tool.description,
       images: [tool.image],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${tool.name} AI Tool Review | AIVerse`,
+      title: `${tool.name} AI Review | AIVerse`,
       description: tool.description,
       images: [tool.image],
     },
@@ -70,6 +81,20 @@ export default async function ToolPage({
     take: 3,
   });
 
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: tool.name,
+    applicationCategory: "AI Software",
+    operatingSystem: "Web",
+    description: tool.description,
+    image: `https://aiverse2.netlify.app${tool.image}`,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: tool.rating,
+      bestRating: "5",
+    },
+  };
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -85,6 +110,14 @@ export default async function ToolPage({
       },
       {
         "@type": "Question",
+        name: `What is ${tool.name} used for?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${tool.name} is used for AI-powered productivity and creative tasks.`,
+        },
+      },
+      {
+        "@type": "Question",
         name: `What category does ${tool.name} belong to?`,
         acceptedAnswer: {
           "@type": "Answer",
@@ -94,9 +127,15 @@ export default async function ToolPage({
     ],
   };
 
-
   return (
     <main className="container-custom py-16">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(softwareSchema),
+        }}
+      />
 
       <script
         type="application/ld+json"
@@ -104,7 +143,6 @@ export default async function ToolPage({
           __html: JSON.stringify(faqSchema),
         }}
       />
-
 
       <section className="grid md:grid-cols-2 gap-10 items-center">
 
@@ -117,138 +155,87 @@ export default async function ToolPage({
           />
         </div>
 
-
         <div>
-
-          <h1 className="text-5xl font-bold">
+          <h1 className="text-5xl font-bold mb-4">
             {tool.name}
           </h1>
 
-          <p className="mt-4 text-gray-600 text-lg">
+          <p className="text-lg opacity-80 mb-4">
             {tool.description}
           </p>
 
+          <p>
+            Category: <b>{tool.category}</b>
+          </p>
 
-          <div className="mt-6 space-y-2">
+          <p>
+            Rating: ⭐ {tool.rating}/5
+          </p>
 
-            <p>
-              ⭐ Rating: {tool.rating}
-            </p>
-
-            <p>
-              Category: {tool.category}
-            </p>
-
-            <p>
-              Pricing: {tool.pricing}
-            </p>
-
-          </div>
-
+          <p>
+            Pricing: {tool.pricing}
+          </p>
 
           <a
             href={tool.website}
             target="_blank"
-            className="inline-block mt-6 bg-black text-white px-6 py-3 rounded-xl"
+            className="inline-block mt-6 px-6 py-3 rounded-lg bg-black text-white"
           >
-            Visit Official Website →
+            Visit Website
           </a>
-
         </div>
 
       </section>
 
 
-
       <section className="mt-16">
-
-        <h2 className="text-3xl font-bold mb-5">
-          About {tool.name}
+        <h2 className="text-3xl font-bold mb-6">
+          Features
         </h2>
 
-        <p className="text-gray-700">
-          {tool.name} is an AI-powered platform listed on AIVerse.
-          Users can explore its features, pricing and use cases to
-          understand how it can improve productivity and creativity.
-        </p>
+        <p>{tool.features}</p>
+
+        <h2 className="text-3xl font-bold mt-10 mb-6">
+          Pros
+        </h2>
+
+        <p>{tool.pros}</p>
+
+        <h2 className="text-3xl font-bold mt-10 mb-6">
+          Cons
+        </h2>
+
+        <p>{tool.cons}</p>
 
       </section>
 
 
-
       <section className="mt-16">
-
-        <h2 className="text-3xl font-bold mb-5">
-          Key Features
+        <h2 className="text-3xl font-bold mb-6">
+          Related AI Tools
         </h2>
 
-        <ul className="list-disc ml-6 text-gray-700 space-y-2">
-          <li>AI-powered productivity features</li>
-          <li>Simple and efficient user experience</li>
-          <li>Useful for students, creators and professionals</li>
-          <li>Helps automate digital tasks</li>
-        </ul>
+        <div className="grid md:grid-cols-3 gap-6">
 
-      </section>
+          {relatedTools.map((item) => (
+            <a
+              key={item.id}
+              href={`/tools/${item.slug}`}
+              className="border rounded-xl p-5"
+            >
+              <h3 className="font-bold">
+                {item.name}
+              </h3>
 
-
-
-      <section className="mt-16">
-
-        <h2 className="text-3xl font-bold mb-5">
-          Frequently Asked Questions
-        </h2>
-
-        <div className="border rounded-xl p-5">
-
-          <h3 className="font-bold">
-            What is {tool.name}?
-          </h3>
-
-          <p className="mt-2 text-gray-600">
-            {tool.description}
-          </p>
+              <p>
+                {item.category}
+              </p>
+            </a>
+          ))}
 
         </div>
 
       </section>
-
-
-
-      {relatedTools.length > 0 && (
-        <section className="mt-16">
-
-          <h2 className="text-3xl font-bold mb-8">
-            Related AI Tools
-          </h2>
-
-
-          <div className="grid md:grid-cols-3 gap-6">
-
-            {relatedTools.map((item) => (
-
-              <Link
-                key={item.id}
-                href={`/tools/${item.slug}`}
-                className="border rounded-xl p-5 hover:shadow-lg"
-              >
-
-                <h3 className="font-bold text-xl">
-                  {item.name}
-                </h3>
-
-                <p className="text-gray-600 mt-2">
-                  {item.category}
-                </p>
-
-              </Link>
-
-            ))}
-
-          </div>
-
-        </section>
-      )}
 
     </main>
   );
