@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/tools/canva",
+        destination: "/tools/canva-ai",
+        permanent: true,
+      },
+      {
         source: "/tools/cursor",
         destination: "/tools/cursor-ai",
         permanent: true,
