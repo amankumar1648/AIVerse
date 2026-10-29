@@ -4,262 +4,496 @@ import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
+
 export default async function Home() {
+
+
   const tools = await prisma.tool.findMany({
-    orderBy: {
-      rating: "desc",
+
+    orderBy:{
+      rating:"desc",
     },
-    take: 6,
+
+    take:6,
+
   });
 
+
+
   const categories = [
+
     {
-      name: "AI Assistant",
-      slug: "ai-assistant",
-      icon: "🤖",
+      name:"AI Assistant",
+      slug:"ai-assistant",
+      icon:"🤖",
     },
+
     {
-      name: "AI Coding",
-      slug: "ai-coding",
-      icon: "💻",
+      name:"AI Coding",
+      slug:"ai-coding",
+      icon:"💻",
     },
+
     {
-      name: "AI Image Generator",
-      slug: "ai-image",
-      icon: "🎨",
+      name:"AI Image Generator",
+      slug:"ai-image",
+      icon:"🎨",
     },
+
     {
-      name: "AI Video",
-      slug: "ai-video",
-      icon: "🎬",
+      name:"AI Video",
+      slug:"ai-video",
+      icon:"🎬",
     },
+
     {
-      name: "AI Writing",
-      slug: "ai-writing",
-      icon: "✍️",
+      name:"AI Writing",
+      slug:"ai-writing",
+      icon:"✍️",
     },
+
   ];
 
-  return (
-    <main>
 
-      <section className="container-custom py-20 text-center">
 
-        <h1 className="text-5xl md:text-6xl font-bold">
-          Discover The Best AI Tools in One Place
-        </h1>
+  const stats=[
 
-        <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-          AIVerse helps students, developers, creators and professionals
-          discover, compare and explore the best AI tools for productivity,
-          coding, writing, design and creativity.
-        </p>
+    {
+      number:"40+",
+      text:"AI Tools",
+    },
 
-        <div className="mt-8 flex justify-center gap-4">
+    {
+      number:"10+",
+      text:"Categories",
+    },
 
-          <Link
-            href="/tools"
-            className="bg-black text-white px-8 py-3 rounded-xl"
-          >
-            Explore AI Tools →
-          </Link>
+    {
+      number:"⭐ 5",
+      text:"Rating System",
+    },
 
-          <Link
-            href="/submit"
-            className="border px-8 py-3 rounded-xl"
-          >
-            Submit Tool
-          </Link>
+    {
+      number:"24/7",
+      text:"AI Discovery",
+    },
 
-        </div>
+  ];
 
-      </section>
 
 
-      <section className="container-custom py-12">
+return (
 
-        <h2 className="text-3xl font-bold mb-8">
-          ⭐ Featured AI Tools
-        </h2>
+<main>
 
 
-        <div className="grid md:grid-cols-3 gap-8">
 
-          {tools.map((tool) => (
+<section className="bg-gradient-to-b from-gray-100 to-white">
 
-            <Link
-              key={tool.id}
-              href={`/tools/${tool.slug}`}
-              className="border rounded-2xl p-6 hover:shadow-xl transition"
-            >
+<div className="container-custom py-24 text-center">
 
-              <div className="relative w-20 h-20 mb-5">
 
-                <Image
-                  src={tool.image}
-                  alt={tool.name}
-                  fill
-                  className="object-contain"
-                />
+<span className="bg-blue-100 px-5 py-2 rounded-full">
 
-              </div>
+🚀 Discover Next Generation AI Tools
 
+</span>
 
-              <h3 className="text-xl font-bold">
-                {tool.name}
-              </h3>
 
 
-              <p className="text-gray-500 mt-2">
-                {tool.category}
-              </p>
+<h1 className="text-5xl md:text-7xl font-bold mt-8">
 
+Discover The Best AI Tools In One Place
 
-              <p className="mt-3">
-                ⭐ {tool.rating}
-              </p>
+</h1>
 
-            </Link>
 
-          ))}
 
-        </div>
+<p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
 
-      </section>
+AIVerse helps students, developers, creators and businesses
+discover, compare and explore powerful AI tools for coding,
+writing, design, productivity and creativity.
 
+</p>
 
-      <section className="container-custom py-12">
 
-        <h2 className="text-3xl font-bold mb-8">
-          Popular Categories
-        </h2>
 
+<div className="mt-10 flex justify-center gap-4 flex-wrap">
 
-        <div className="grid md:grid-cols-5 gap-4">
 
+<Link
 
-          {categories.map((category) => (
+href="/tools"
 
-            <Link
-              key={category.slug}
-              href={`/categories/${category.slug}`}
-              className="border rounded-xl p-5 text-center hover:shadow-lg transition"
-            >
+className="bg-black text-white px-8 py-4 rounded-xl"
 
-              <div className="text-4xl">
-                {category.icon}
-              </div>
+>
 
-              <div className="mt-3 font-bold">
-                {category.name}
-              </div>
+Explore AI Tools →
 
+</Link>
 
-            </Link>
 
-          ))}
 
+<Link
 
-        </div>
+href="/submit"
 
-      </section>
+className="border px-8 py-4 rounded-xl"
 
+>
 
-      <section className="container-custom py-16">
+Submit Tool
 
-        <h2 className="text-3xl font-bold mb-6">
-          Why Choose AIVerse?
-        </h2>
+</Link>
 
 
-        <div className="grid md:grid-cols-3 gap-6">
+</div>
 
 
-          <div className="border rounded-xl p-6">
-            <h3 className="font-bold text-xl">
-              Curated AI Tools
-            </h3>
+</div>
 
-            <p className="mt-3 text-gray-600">
-              Discover useful AI platforms selected for different needs.
-            </p>
-          </div>
+</section>
 
 
 
-          <div className="border rounded-xl p-6">
-            <h3 className="font-bold text-xl">
-              Easy Comparison
-            </h3>
 
-            <p className="mt-3 text-gray-600">
-              Compare AI tools by category, pricing and ratings.
-            </p>
-          </div>
 
+<section className="container-custom py-12">
 
 
-          <div className="border rounded-xl p-6">
-            <h3 className="font-bold text-xl">
-              Updated Database
-            </h3>
+<div className="grid md:grid-cols-4 gap-6">
 
-            <p className="mt-3 text-gray-600">
-              Explore modern AI tools in one growing directory.
-            </p>
-          </div>
 
+{stats.map((item)=>(
 
-        </div>
+<div
 
-      </section>
+key={item.text}
 
+className="border rounded-2xl p-8 text-center"
 
-      <section className="container-custom py-16">
+>
 
-        <h2 className="text-3xl font-bold mb-6">
-          Frequently Asked Questions
-        </h2>
 
+<h2 className="text-4xl font-bold">
 
-        <div className="space-y-4">
+{item.number}
 
+</h2>
 
-          <div className="border rounded-xl p-5">
 
-            <h3 className="font-bold">
-              What is AIVerse?
-            </h3>
+<p className="text-gray-600 mt-2">
 
-            <p className="mt-2 text-gray-600">
-              AIVerse is an AI tools directory that helps users discover and
-              compare artificial intelligence tools.
-            </p>
+{item.text}
 
-          </div>
+</p>
 
 
+</div>
 
-          <div className="border rounded-xl p-5">
+))}
 
-            <h3 className="font-bold">
-              Can I submit an AI tool?
-            </h3>
 
-            <p className="mt-2 text-gray-600">
-              Yes, users can submit AI tools through the submission page.
-            </p>
+</div>
 
-          </div>
 
+</section>
 
-        </div>
 
 
-      </section>
 
 
-    </main>
-  );
+<section className="container-custom py-16">
+
+
+<h2 className="text-3xl font-bold mb-8">
+
+⭐ Featured AI Tools
+
+</h2>
+
+
+
+<div className="grid md:grid-cols-3 gap-8">
+
+
+{tools.map((tool)=>(
+
+
+<Link
+
+key={tool.id}
+
+href={`/tools/${tool.slug}`}
+
+className="border rounded-3xl p-6 hover:shadow-2xl transition"
+
+>
+
+
+<div className="relative w-24 h-24">
+
+<Image
+
+src={tool.image}
+
+alt={tool.name}
+
+fill
+
+className="object-contain"
+
+/>
+
+</div>
+
+
+
+<h3 className="text-2xl font-bold mt-5">
+
+{tool.name}
+
+</h3>
+
+
+
+<p className="text-gray-500 mt-2">
+
+{tool.category}
+
+</p>
+
+
+
+<div className="mt-4 flex gap-2">
+
+
+<span className="bg-yellow-100 px-3 py-1 rounded-full">
+
+⭐ {tool.rating}
+
+</span>
+
+
+
+<span className="bg-green-100 px-3 py-1 rounded-full">
+
+{tool.pricing}
+
+</span>
+
+
+</div>
+
+
+</Link>
+
+
+))}
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section className="container-custom py-16">
+
+
+<h2 className="text-3xl font-bold mb-8">
+
+Explore AI Categories
+
+</h2>
+
+
+
+<div className="grid md:grid-cols-5 gap-5">
+
+
+{categories.map((category)=>(
+
+
+<Link
+
+key={category.slug}
+
+href={`/categories/${category.slug}`}
+
+className="border rounded-2xl p-6 text-center hover:shadow-xl transition"
+
+>
+
+
+<div className="text-5xl">
+
+{category.icon}
+
+</div>
+
+
+<h3 className="font-bold mt-4">
+
+{category.name}
+
+</h3>
+
+
+</Link>
+
+
+))}
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section className="container-custom py-16">
+
+
+<h2 className="text-3xl font-bold mb-8">
+
+Why Choose AIVerse?
+
+</h2>
+
+
+
+<div className="grid md:grid-cols-3 gap-6">
+
+
+<div className="border rounded-2xl p-6">
+
+<h3 className="text-xl font-bold">
+
+Curated Tools
+
+</h3>
+
+<p className="mt-3 text-gray-600">
+
+Find useful AI tools selected for different needs.
+
+</p>
+
+</div>
+
+
+
+<div className="border rounded-2xl p-6">
+
+<h3 className="text-xl font-bold">
+
+Easy Comparison
+
+</h3>
+
+<p className="mt-3 text-gray-600">
+
+Compare tools by rating, category and pricing.
+
+</p>
+
+</div>
+
+
+
+<div className="border rounded-2xl p-6">
+
+<h3 className="text-xl font-bold">
+
+Growing Database
+
+</h3>
+
+<p className="mt-3 text-gray-600">
+
+Discover modern AI platforms in one place.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section className="container-custom py-16">
+
+
+<h2 className="text-3xl font-bold mb-8">
+
+Frequently Asked Questions
+
+</h2>
+
+
+<div className="space-y-5">
+
+
+<div className="border rounded-xl p-6">
+
+<h3 className="font-bold">
+
+What is AIVerse?
+
+</h3>
+
+<p className="mt-2 text-gray-600">
+
+AIVerse is an AI tools directory helping users discover and compare AI software.
+
+</p>
+
+</div>
+
+
+
+<div className="border rounded-xl p-6">
+
+<h3 className="font-bold">
+
+Can users submit AI tools?
+
+</h3>
+
+<p className="mt-2 text-gray-600">
+
+Yes, anyone can submit useful AI tools through AIVerse.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+</main>
+
+);
+
 }
 
