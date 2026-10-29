@@ -28,6 +28,7 @@ export default function ToolFilters({ tools }: { tools: Tool[] }) {
     ...Array.from(new Set(tools.map((t)=>t.category)))
   ];
 
+
   const pricings = [
     "All",
     ...Array.from(new Set(tools.map((t)=>t.pricing)))
@@ -54,57 +55,95 @@ export default function ToolFilters({ tools }: { tools: Tool[] }) {
   });
 
 
+
   if(sort==="rating"){
     filtered.sort((a,b)=>b.rating-a.rating);
   }
+
 
   if(sort==="name"){
     filtered.sort((a,b)=>a.name.localeCompare(b.name));
   }
 
 
+
   return (
+
     <>
 
-    <div className="grid md:grid-cols-4 gap-4 mb-10">
+    {/* Filters */}
+
+    <div className="grid md:grid-cols-4 gap-4 mb-12">
 
       <input
+
       placeholder="🔍 Search AI tools..."
+
       value={search}
+
       onChange={(e)=>setSearch(e.target.value)}
-      className="border rounded-xl p-3"
+
+      className="border rounded-xl p-4 shadow-sm focus:ring-2 focus:ring-black"
+
       />
 
 
       <select
-      className="border rounded-xl p-3"
+
+      className="border rounded-xl p-4"
+
       value={category}
+
       onChange={(e)=>setCategory(e.target.value)}
+
       >
+
         {categories.map(c=>(
-          <option key={c}>{c}</option>
+
+          <option key={c}>
+            {c}
+          </option>
+
         ))}
+
       </select>
 
 
+
       <select
-      className="border rounded-xl p-3"
+
+      className="border rounded-xl p-4"
+
       value={pricing}
+
       onChange={(e)=>setPricing(e.target.value)}
+
       >
+
         {pricings.map(p=>(
-          <option key={p}>{p}</option>
+
+          <option key={p}>
+            {p}
+          </option>
+
         ))}
+
       </select>
 
 
+
       <select
-      className="border rounded-xl p-3"
+
+      className="border rounded-xl p-4"
+
       value={sort}
+
       onChange={(e)=>setSort(e.target.value)}
+
       >
+
         <option value="rating">
-          Highest Rating
+          ⭐ Highest Rated
         </option>
 
         <option value="name">
@@ -113,57 +152,128 @@ export default function ToolFilters({ tools }: { tools: Tool[] }) {
 
       </select>
 
+
     </div>
 
+
+
+    {/* Tool Cards */}
 
 
     <div className="grid md:grid-cols-3 gap-8">
 
+
     {filtered.map((tool)=>(
 
+
       <Link
+
       key={tool.id}
+
       href={`/tools/${tool.slug}`}
-      className="border rounded-2xl p-6 hover:shadow-xl transition"
-      >
 
-      <div className="relative w-20 h-20 mb-5">
-        <Image
-        src={tool.image}
-        alt={tool.name}
-        fill
-        className="object-contain"
-        />
-      </div>
-
-
-      <h3 className="text-xl font-bold">
-        {tool.name}
-      </h3>
+      className="
+      group
+      rounded-3xl
+      border
+      bg-white
+      p-6
+      shadow-sm
+      hover:shadow-2xl
+      hover:-translate-y-2
+      transition-all
+      duration-300
+      ">
 
 
-      <p className="text-gray-500">
-        {tool.category}
-      </p>
+        <div className="flex justify-between items-start">
 
 
-      <p>
-        ⭐ {tool.rating}
-      </p>
+          <div className="relative w-20 h-20">
+
+            <Image
+
+            src={tool.image}
+
+            alt={tool.name}
+
+            fill
+
+            className="object-contain"
+
+            />
+
+          </div>
 
 
-      <p className="text-gray-600 mt-3">
-        {tool.description}
-      </p>
+          <span className="text-sm bg-yellow-100 px-3 py-1 rounded-full">
+
+            ⭐ {tool.rating}
+
+          </span>
+
+
+        </div>
+
+
+
+        <h3 className="text-2xl font-bold mt-5 group-hover:text-blue-600">
+
+          {tool.name}
+
+        </h3>
+
+
+
+        <div className="flex gap-2 mt-3">
+
+
+          <span className="text-xs bg-blue-100 px-3 py-1 rounded-full">
+
+            {tool.category}
+
+          </span>
+
+
+          <span className="text-xs bg-green-100 px-3 py-1 rounded-full">
+
+            {tool.pricing}
+
+          </span>
+
+
+        </div>
+
+
+
+        <p className="text-gray-600 mt-4 line-clamp-3">
+
+          {tool.description}
+
+        </p>
+
+
+
+        <div className="mt-6 text-blue-600 font-semibold">
+
+          View Tool →
+
+        </div>
+
 
 
       </Link>
 
+
     ))}
+
 
     </div>
 
+
     </>
+
   );
+
 }
 
