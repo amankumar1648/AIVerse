@@ -50,26 +50,68 @@ export default async function ToolsPage() {
       />
 
 
-      <section className="text-center mb-16">
+<section className="text-center mb-16">
 
-        <h1 className="text-5xl font-bold">
-          Explore the Best AI Tools
-        </h1>
+<h1 className="text-5xl md:text-6xl font-bold">
+  Explore 40+ Best AI Tools
+</h1>
 
-        <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-          Discover and compare the best AI tools for coding, writing,
-          design, productivity, education and creativity.
-        </p>
+<p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+  Discover, compare and review the best AI tools for coding,
+  writing, design, video creation, productivity and business.
+  AIVerse helps you find the right AI tool for every task.
+</p>
 
-      </section>
 
+<div className="mt-8 flex justify-center gap-4 flex-wrap">
+
+<Link
+href="/categories/ai-assistant"
+className="border rounded-full px-5 py-2 hover:shadow"
+>
+🤖 AI Assistants
+</Link>
+
+
+<Link
+href="/categories/ai-coding"
+className="border rounded-full px-5 py-2 hover:shadow"
+>
+💻 Coding
+</Link>
+
+
+<Link
+href="/categories/ai-image"
+className="border rounded-full px-5 py-2 hover:shadow"
+>
+🎨 Images
+</Link>
+
+
+<Link
+href="/categories/ai-video"
+className="border rounded-full px-5 py-2 hover:shadow"
+>
+🎬 Video
+</Link>
+
+
+<Link
+href="/categories/ai-writing"
+className="border rounded-full px-5 py-2 hover:shadow"
+>
+✍️ Writing
+</Link>
+
+</div>
+
+</section>
 
       <section>
-
-        <h2 className="text-3xl font-bold mb-8">
-          All AI Tools
-        </h2>
-
+<h2 className="text-3xl font-bold mb-8">
+  All AI Tools ({tools.length})
+</h2>
 
         <ToolFilters tools={tools}/>
 
