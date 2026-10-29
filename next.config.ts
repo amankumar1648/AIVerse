@@ -10,18 +10,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/tools/canva",
-        destination: "/tools/canva-ai",
-        permanent: true,
-      },
-      {
         source: "/tools/cursor",
         destination: "/tools/cursor-ai",
         permanent: true,
       },
       {
-        source: "/tools/runway",
-        destination: "/tools/runway-ai",
+        source: "/tools/canva",
+        destination: "/tools/canva-ai",
         permanent: true,
       },
       {
@@ -30,13 +25,23 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/tools/microsoft-copilot",
-        destination: "/tools/microsoft-copilot",
+        source: "/tools/runway",
+        destination: "/tools/runway-ai",
         permanent: true,
       },
       {
-        source: "/tools/leonardo-ai",
+        source: "/tools/leonardo",
         destination: "/tools/leonardo-ai",
+        permanent: true,
+      },
+      {
+        source: "/tools/dall-e",
+        destination: "/tools/dall-e-ai",
+        permanent: true,
+      },
+      {
+        source: "/tools/microsoft-copilot",
+        destination: "/tools/microsoft-copilot",
         permanent: true,
       },
     ];
