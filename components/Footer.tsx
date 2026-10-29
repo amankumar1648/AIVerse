@@ -33,6 +33,8 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold mb-3">Legal</h3>
           <ul className="space-y-2">
+            <li><Link href="/disclaimer">Disclaimer</Link></li>
+            <li><Link href="/cookies">Cookie Policy</Link></li>
             <li><Link href="/privacy">Privacy Policy</Link></li>
             <li><Link href="/terms">Terms & Conditions</Link></li>
           </ul>
