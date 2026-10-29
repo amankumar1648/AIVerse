@@ -5,7 +5,6 @@ import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://aiverse2.netlify.app"),
 
