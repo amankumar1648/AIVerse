@@ -5,367 +5,252 @@ import { prisma } from "@/lib/prisma";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-
   const tools = await prisma.tool.findMany({
-    orderBy:{
-      rating:"desc",
+    orderBy: {
+      rating: "desc",
     },
-    take:6,
+    take: 6,
   });
-
 
   const categories = [
     {
-      name:"AI Assistants",
-      icon:"🤖",
+      name: "AI Assistant",
+      slug: "ai-assistant",
+      icon: "🤖",
     },
     {
-      name:"AI Coding",
-      icon:"💻",
+      name: "AI Coding",
+      slug: "ai-coding",
+      icon: "💻",
     },
     {
-      name:"AI Image",
-      icon:"🎨",
+      name: "AI Image Generator",
+      slug: "ai-image",
+      icon: "🎨",
     },
     {
-      name:"AI Video",
-      icon:"🎬",
+      name: "AI Video",
+      slug: "ai-video",
+      icon: "🎬",
     },
     {
-      name:"AI Writing",
-      icon:"✍️",
+      name: "AI Writing",
+      slug: "ai-writing",
+      icon: "✍️",
     },
   ];
 
-
   return (
-
     <main>
 
+      <section className="container-custom py-20 text-center">
 
-      {/* Hero */}
+        <h1 className="text-5xl md:text-6xl font-bold">
+          Discover The Best AI Tools in One Place
+        </h1>
 
-      <section className="
-      bg-black
-      text-white
-      py-24
-      ">
+        <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+          AIVerse helps students, developers, creators and professionals
+          discover, compare and explore the best AI tools for productivity,
+          coding, writing, design and creativity.
+        </p>
 
-        <div className="container-custom text-center">
+        <div className="mt-8 flex justify-center gap-4">
 
-
-          <h1 className="
-          text-5xl
-          md:text-7xl
-          font-bold
-          ">
-
-            Discover The Best AI Tools
-
-          </h1>
-
-
-          <p className="
-          mt-6
-          text-xl
-          text-gray-300
-          max-w-3xl
-          mx-auto
-          ">
-
-          AIVerse helps you discover, compare and explore the latest AI tools for coding, writing, design, productivity and creativity.
-
-          </p>
-
-
-          <div className="mt-10 flex justify-center gap-4">
-
-
-            <Link
-
+          <Link
             href="/tools"
-
-            className="
-            bg-white
-            text-black
-            px-8
-            py-4
-            rounded-xl
-            font-semibold
-            hover:scale-105
-            transition
-            ">
-
+            className="bg-black text-white px-8 py-3 rounded-xl"
+          >
             Explore AI Tools →
+          </Link>
 
-            </Link>
-
-
-
-            <Link
-
+          <Link
             href="/submit"
-
-            className="
-            border
-            border-white
-            px-8
-            py-4
-            rounded-xl
-            ">
-
+            className="border px-8 py-3 rounded-xl"
+          >
             Submit Tool
-
-            </Link>
-
-
-          </div>
-
+          </Link>
 
         </div>
 
       </section>
-
-
-
-      {/* Stats */}
 
 
       <section className="container-custom py-12">
 
-
-        <div className="
-        grid
-        md:grid-cols-3
-        gap-6
-        text-center
-        ">
-
-
-          <div className="border rounded-2xl p-8">
-
-            <h2 className="text-4xl font-bold">
-              40+
-            </h2>
-
-            <p className="text-gray-600 mt-2">
-              AI Tools
-            </p>
-
-          </div>
-
-
-
-          <div className="border rounded-2xl p-8">
-
-            <h2 className="text-4xl font-bold">
-              10+
-            </h2>
-
-            <p className="text-gray-600 mt-2">
-              Categories
-            </p>
-
-          </div>
-
-
-
-          <div className="border rounded-2xl p-8">
-
-            <h2 className="text-4xl font-bold">
-              100%
-            </h2>
-
-            <p className="text-gray-600 mt-2">
-              Curated
-            </p>
-
-          </div>
-
-
-        </div>
-
-
-      </section>
-
-
-
-
-      {/* Featured Tools */}
-
-
-      <section className="container-custom py-16">
-
-
-        <h2 className="text-4xl font-bold mb-10">
-
-          ⭐ Top AI Tools
-
+        <h2 className="text-3xl font-bold mb-8">
+          ⭐ Featured AI Tools
         </h2>
-
 
 
         <div className="grid md:grid-cols-3 gap-8">
 
+          {tools.map((tool) => (
 
-        {tools.map((tool)=>(
+            <Link
+              key={tool.id}
+              href={`/tools/${tool.slug}`}
+              className="border rounded-2xl p-6 hover:shadow-xl transition"
+            >
 
+              <div className="relative w-20 h-20 mb-5">
 
-          <Link
+                <Image
+                  src={tool.image}
+                  alt={tool.name}
+                  fill
+                  className="object-contain"
+                />
 
-          key={tool.id}
-
-          href={`/tools/${tool.slug}`}
-
-          className="
-          border
-          rounded-3xl
-          p-6
-          hover:shadow-2xl
-          hover:-translate-y-2
-          transition
-          ">
-
-
-            <div className="relative w-20 h-20">
-
-              <Image
-
-              src={tool.image}
-
-              alt={tool.name}
-
-              fill
-
-              className="object-contain"
-
-              />
-
-            </div>
+              </div>
 
 
-            <h3 className="text-2xl font-bold mt-5">
-
-              {tool.name}
-
-            </h3>
+              <h3 className="text-xl font-bold">
+                {tool.name}
+              </h3>
 
 
-            <p className="text-gray-500 mt-2">
-
-              {tool.category}
-
-            </p>
+              <p className="text-gray-500 mt-2">
+                {tool.category}
+              </p>
 
 
-            <p className="mt-3">
+              <p className="mt-3">
+                ⭐ {tool.rating}
+              </p>
 
-              ⭐ {tool.rating}
+            </Link>
 
-            </p>
-
-
-          </Link>
-
-
-        ))}
-
+          ))}
 
         </div>
-
 
       </section>
 
 
+      <section className="container-custom py-12">
 
-
-      {/* Categories */}
-
-
-      <section className="container-custom py-16">
-
-
-        <h2 className="text-4xl font-bold mb-10">
-
-          Explore Categories
-
+        <h2 className="text-3xl font-bold mb-8">
+          Popular Categories
         </h2>
 
 
-
-        <div className="grid md:grid-cols-5 gap-5">
-
-
-        {categories.map((cat)=>(
+        <div className="grid md:grid-cols-5 gap-4">
 
 
-          <Link
+          {categories.map((category) => (
 
-          href="/tools"
+            <Link
+              key={category.slug}
+              href={`/categories/${category.slug}`}
+              className="border rounded-xl p-5 text-center hover:shadow-lg transition"
+            >
 
-          key={cat.name}
+              <div className="text-4xl">
+                {category.icon}
+              </div>
 
-          className="
-          border
-          rounded-2xl
-          p-6
-          text-center
-          hover:shadow-xl
-          transition
-          ">
-
-
-            <div className="text-4xl">
-              {cat.icon}
-            </div>
+              <div className="mt-3 font-bold">
+                {category.name}
+              </div>
 
 
-            <p className="font-semibold mt-4">
+            </Link>
 
-              {cat.name}
-
-            </p>
-
-
-          </Link>
-
-
-        ))}
+          ))}
 
 
         </div>
 
-
       </section>
-
-
-
-
-      {/* About */}
 
 
       <section className="container-custom py-16">
 
-
-        <div className="
-        border
-        rounded-3xl
-        p-10
-        ">
+        <h2 className="text-3xl font-bold mb-6">
+          Why Choose AIVerse?
+        </h2>
 
 
-          <h2 className="text-4xl font-bold">
-
-            Why Choose AIVerse?
-
-          </h2>
+        <div className="grid md:grid-cols-3 gap-6">
 
 
-          <p className="mt-5 text-gray-600 text-lg">
+          <div className="border rounded-xl p-6">
+            <h3 className="font-bold text-xl">
+              Curated AI Tools
+            </h3>
 
-          AIVerse makes it simple to discover powerful AI tools. Explore tools by category, pricing, ratings and use cases in one place.
+            <p className="mt-3 text-gray-600">
+              Discover useful AI platforms selected for different needs.
+            </p>
+          </div>
 
-          </p>
+
+
+          <div className="border rounded-xl p-6">
+            <h3 className="font-bold text-xl">
+              Easy Comparison
+            </h3>
+
+            <p className="mt-3 text-gray-600">
+              Compare AI tools by category, pricing and ratings.
+            </p>
+          </div>
+
+
+
+          <div className="border rounded-xl p-6">
+            <h3 className="font-bold text-xl">
+              Updated Database
+            </h3>
+
+            <p className="mt-3 text-gray-600">
+              Explore modern AI tools in one growing directory.
+            </p>
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+      <section className="container-custom py-16">
+
+        <h2 className="text-3xl font-bold mb-6">
+          Frequently Asked Questions
+        </h2>
+
+
+        <div className="space-y-4">
+
+
+          <div className="border rounded-xl p-5">
+
+            <h3 className="font-bold">
+              What is AIVerse?
+            </h3>
+
+            <p className="mt-2 text-gray-600">
+              AIVerse is an AI tools directory that helps users discover and
+              compare artificial intelligence tools.
+            </p>
+
+          </div>
+
+
+
+          <div className="border rounded-xl p-5">
+
+            <h3 className="font-bold">
+              Can I submit an AI tool?
+            </h3>
+
+            <p className="mt-2 text-gray-600">
+              Yes, users can submit AI tools through the submission page.
+            </p>
+
+          </div>
 
 
         </div>
@@ -374,10 +259,7 @@ export default async function Home() {
       </section>
 
 
-
     </main>
-
   );
-
-};
+}
 
