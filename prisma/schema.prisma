@@ -2,120 +2,60 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-
 model Tool {
-
-  id Int @id @default(autoincrement())
-
-  name String
-
-  slug String @unique
-
-  category String
-
-  description String
-
-  image String
-
-  rating Float
-
-  pricing String
-
-  website String
-
-  features String?
-
-  pros String?
-
-  cons String?
-
-  bestFor String?
-
+  id           Int        @id @default(autoincrement())
+  name         String
+  slug         String     @unique
+  category     String
+  description  String
+  image        String
+  rating       Float
+  pricing      String
+  website      String
   alternatives String?
-
-
-  favorites Favorite[]
-
+  bestFor      String?
+  cons         String?
+  features     String?
+  pros         String?
+  favorites    Favorite[]
 }
-
-
 
 model User {
-
-  id Int @id @default(autoincrement())
-
-  email String @unique
-
-  password String
-
-  role String @default("USER")
-
-  createdAt DateTime @default(now())
-
-
-  favorites Favorite[]
-
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  password    String
+  role        String       @default("USER")
+  createdAt   DateTime     @default(now())
+  favorites   Favorite[]
   submissions Submission[]
-
 }
-
-
 
 model Favorite {
-
-  id Int @id @default(autoincrement())
-
-  userId Int
-
-  toolId Int
-
-
-  user User @relation(fields:[userId], references:[id])
-
-  tool Tool @relation(fields:[toolId], references:[id])
-
-
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  toolId    Int
   createdAt DateTime @default(now())
-
+  tool      Tool     @relation(fields: [toolId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }
-
-
 
 model Submission {
-
-  id Int @id @default(autoincrement())
-
-  name String
-
-  slug String
-
-  category String
-
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String
+  category    String
   description String
-
-  image String
-
-  rating Float
-
-  pricing String
-
-  website String
-
-  status String @default("pending")
-
-  userId Int
-
-
-  user User @relation(fields:[userId], references:[id])
-
-
-  createdAt DateTime @default(now())
-
+  image       String
+  rating      Float
+  pricing     String
+  website     String
+  status      String   @default("pending")
+  userId      Int
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
 }
-

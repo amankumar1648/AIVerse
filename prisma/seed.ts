@@ -239,7 +239,86 @@ async function main() {
   cons: "Advanced users may need more",
   bestFor: "Students and developers",
   alternatives: "Cursor AI"
-}
+},
+{
+  name: "Poe AI",
+  slug: "poe-ai",
+  category: "AI Assistant",
+  description: "AI platform that provides access to multiple AI chatbots and models.",
+  image: "/tools/poe.png",
+  rating: 4.4,
+  pricing: "Free + Paid",
+  website: "https://poe.com",
+  features: "Multiple AI models, chatbot creation",
+  pros: "Many AI models in one place",
+  cons: "Some models require paid plan",
+  bestFor: "Students and AI users",
+  alternatives: "ChatGPT, Claude"
+},
+
+{
+  name: "Pi AI",
+  slug: "pi-ai",
+  category: "AI Assistant",
+  description: "Personal AI assistant designed for conversations and helpful advice.",
+  image: "/tools/pi-ai.png",
+  rating: 4.3,
+  pricing: "Free",
+  website: "https://pi.ai",
+  features: "Conversational AI, personal assistant",
+  pros: "Natural conversations",
+  cons: "Less powerful for coding",
+  bestFor: "General users",
+  alternatives: "ChatGPT, Claude"
+},
+
+{
+  name: "You.com AI",
+  slug: "you-com-ai",
+  category: "AI Search",
+  description: "AI search engine combining web search with artificial intelligence.",
+  image: "/tools/you-ai.png",
+  rating: 4.2,
+  pricing: "Free + Paid",
+  website: "https://you.com",
+  features: "AI search, chat, research",
+  pros: "Search-focused AI",
+  cons: "Smaller ecosystem",
+  bestFor: "Research and students",
+  alternatives: "Perplexity AI"
+},
+
+{
+  name: "Phind AI",
+  slug: "phind-ai",
+  category: "AI Coding",
+  description: "AI search assistant built for developers and programming questions.",
+  image: "/tools/phind.png",
+  rating: 4.4,
+  pricing: "Free",
+  website: "https://phind.com",
+  features: "Coding answers, developer search",
+  pros: "Good programming explanations",
+  cons: "Mostly developer focused",
+  bestFor: "Programmers",
+  alternatives: "GitHub Copilot"
+},
+
+{
+  name: "Amazon Q Developer",
+  slug: "amazon-q-developer",
+  category: "AI Coding",
+  description: "AI coding assistant from Amazon for software development.",
+  image: "/tools/amazon-q.png",
+  rating: 4.3,
+  pricing: "Free + Paid",
+  website: "https://aws.amazon.com/q/developer/",
+  features: "Code generation, debugging",
+  pros: "AWS integration",
+  cons: "Best with AWS ecosystem",
+  bestFor: "Developers",
+  alternatives: "GitHub Copilot"
+},
  ],
     skipDuplicates: true
   });
