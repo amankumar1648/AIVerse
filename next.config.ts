@@ -34,11 +34,6 @@ const nextConfig: NextConfig = {
         destination: "/tools/dall-e-ai",
         permanent: true,
       },
-      {
-        source: "/tools/fv",
-        destination: "/tools",
-        permanent: true,
-      },
     ];
   },
 };

@@ -6,7 +6,7 @@ async function main() {
 
   await prisma.tool.createMany({
     data: [
-      {
+     {
         name: "Hugging Face",
         slug: "hugging-face",
         category: "AI Platform",
@@ -318,6 +318,21 @@ async function main() {
   cons: "Best with AWS ecosystem",
   bestFor: "Developers",
   alternatives: "GitHub Copilot"
+},
+{
+  name: "DALL-E",
+  slug: "dall-e-ai",
+  category: "AI Image Generator",
+  description: "DALL-E is an AI image generation tool that creates images from text prompts.",
+  image: "/tools/dall-e.png",
+  rating: 4.7,
+  pricing: "Paid",
+  website: "https://openai.com/dall-e",
+  features: "Text to image generation, image editing",
+  pros: "High quality AI images",
+  cons: "Limited free usage",
+  bestFor: "Creators and designers",
+  alternatives: "Midjourney, Leonardo AI, Stable Diffusion"
 },
  ],
     skipDuplicates: true
