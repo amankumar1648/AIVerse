@@ -29,6 +29,16 @@ const nextConfig: NextConfig = {
         destination: "/tools/canva-ai",
         permanent: true,
       },
+      {
+        source: "/tools/dall-e",
+        destination: "/tools/dall-e-ai",
+        permanent: true,
+      },
+      {
+        source: "/tools/fv",
+        destination: "/tools",
+        permanent: true,
+      },
     ];
   },
 };
