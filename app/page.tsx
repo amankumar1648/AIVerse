@@ -255,6 +255,60 @@ className="border rounded-2xl p-8 text-center"
 </section>
 <section className="container-custom py-16">
 
+<h2 className="text-3xl font-bold mb-8 text-center">
+Popular AI Tool Categories
+</h2>
+
+
+<div className="grid md:grid-cols-4 gap-6">
+
+
+{categories.map((cat)=>(
+
+<Link
+
+key={cat.slug}
+
+href={`/categories/${cat.slug}`}
+
+className="border rounded-2xl p-8 text-center hover:shadow-lg transition"
+
+>
+
+
+<div className="text-4xl">
+
+{cat.icon}
+
+</div>
+
+
+<h3 className="font-bold text-xl mt-4">
+
+{cat.name}
+
+</h3>
+
+
+<p className="text-gray-600 mt-2">
+
+Explore best {cat.name} tools
+
+</p>
+
+
+</Link>
+
+))}
+
+
+</div>
+
+
+</section>
+
+<section className="container-custom py-16">
+
 <div className="flex justify-between items-center mb-10">
 
 <h2 className="text-4xl font-bold">
@@ -778,5 +832,5 @@ Yes, anyone can submit useful AI tools through AIVerse.
 
 );
 
-};
+}
 
