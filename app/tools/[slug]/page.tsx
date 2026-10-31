@@ -103,7 +103,6 @@ if (!tool) {
   ];
   return (
     <main className="container-custom py-16">
-
       {/* SEO Schema */}
       <script
         type="application/ld+json"
@@ -124,6 +123,36 @@ if (!tool) {
         }}
       />
 
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://aiverse2.netlify.app"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "AI Tools",
+                "item": "https://aiverse2.netlify.app/tools"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": tool.name,
+                "item": `https://aiverse2.netlify.app/tools/${tool.slug}`
+              }
+            ]
+          }),
+        }}
+      />
       {/* Hero Section */}
       <section className="grid md:grid-cols-2 gap-12 items-center">
 
@@ -378,5 +407,7 @@ if (!tool) {
 
     </main>
   );
+
 }
+
 
