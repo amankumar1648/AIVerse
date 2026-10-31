@@ -65,11 +65,13 @@ export const metadata: Metadata = {
       "Discover the best AI tools and software in one place.",
     images: ["/icon.svg"],
   },
-
-  robots: {
+robots: {
     index: true,
     follow: true,
   },
+alternates: {
+  canonical: "https://aiverse2.netlify.app",
+},
 };
 export default function RootLayout({
   children,
