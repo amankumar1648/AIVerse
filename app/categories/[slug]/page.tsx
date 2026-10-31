@@ -8,45 +8,42 @@ export const dynamic = "force-dynamic";
 
 const categoryData: Record<
   string,
-  {
+   {
     title:string;
+    category:string;
     description:string;
-  }
+   }
 > = {
+"ai-coding":{
+  title:"Best AI Coding Tools",
+  category:"AI Coding",
+  description:
+  "Discover the best AI coding assistants and developer tools for programming, debugging and software development."
+},
+"ai-writing":{
+  title:"Best AI Writing Tools",
+  category:"AI Writing",
+  description:"Explore AI writing assistants for content creation, blogs, marketing and productivity."
+},
 
-  "ai-coding":{
-    title:"Best AI Coding Tools",
-    description:
-    "Discover the best AI coding assistants and developer tools for programming, debugging and software development."
-  },
+"ai-image":{
+  title:"Best AI Image Generator Tools",
+  category:"AI Image Generator",
+  description:"Find AI image generation tools for creating stunning artwork and designs."
+},
 
-  "ai-writing":{
-    title:"Best AI Writing Tools",
-    description:
-    "Explore AI writing assistants for content creation, blogs, marketing and productivity."
-  },
+"ai-video":{
+  title:"Best AI Video Tools",
+  category:"AI Video",
+  description:"Explore AI video generation and editing tools for creators."
+},
 
-  "ai-image":{
-    title:"Best AI Image Generator Tools",
-    description:
-    "Find AI image generation tools for creating stunning artwork and designs."
-  },
-
-  "ai-video":{
-    title:"Best AI Video Tools",
-    description:
-    "Explore AI video generation and editing tools for creators."
-  },
-
-  "ai-assistant":{
-    title:"Best AI Assistant Tools",
-    description:
-    "Discover powerful AI assistants for productivity and everyday tasks."
-  },
-
+"ai-assistant":{
+  title:"Best AI Assistant Tools",
+  category:"AI Assistant",
+  description:"Discover powerful AI assistants for productivity and everyday tasks."
+},
 };
-
-
 
 export async function generateMetadata(
 {
@@ -91,24 +88,14 @@ export default async function CategoryPage(
 
  const category=categoryData[slug];
 
-
- const tools=await prisma.tool.findMany({
-
- where:{
- category:{
- contains:
- slug
- }
- },
-
- orderBy:{
- rating:"desc"
- }
-
- });
-
-
-
+const tools = await prisma.tool.findMany({
+  where:{
+    category: category?.category,
+  },
+  orderBy:{
+    rating:"desc"
+  }
+});
  const faqSchema={
 
  "@context":"https://schema.org",
