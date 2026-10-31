@@ -5,11 +5,13 @@ import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+
   const { slug } = await params;
 
   const tool = await prisma.tool.findUnique({
@@ -19,15 +21,50 @@ export async function generateMetadata({
   if (!tool) {
     return {
       title: "AI Tool Not Found | AIVerse",
+      description: "The requested AI tool could not be found.",
     };
   }
 
   return {
-    title: `${tool.name} AI Review, Features, Pricing & Alternatives | AIVerse`,
-    description: tool.description,
+    title: `${tool.name} Review 2026 - Features, Pricing, Alternatives | AIVerse`,
+    description:
+      `${tool.name} AI review. Explore features, pricing, pros, cons, alternatives and best use cases on AIVerse.`,
+
+    keywords: [
+      tool.name,
+      `${tool.name} review`,
+      `${tool.name} alternatives`,
+      `${tool.name} pricing`,
+      "AI tools",
+      "AI software",
+    ],
+
+    openGraph: {
+      title: `${tool.name} Review 2026 | AIVerse`,
+      description:
+        `Explore ${tool.name} features, pricing, alternatives and reviews.`,
+      url: `https://aiverse2.netlify.app/tools/${tool.slug}`,
+      siteName: "AIVerse",
+      images: [
+        {
+          url: tool.image,
+          width: 512,
+          height: 512,
+          alt: tool.name,
+        },
+      ],
+      type: "website",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.name} Review 2026 | AIVerse`,
+      description:
+        `Explore ${tool.name} features, pricing and alternatives.`,
+      images: [tool.image],
+    },
   };
 }
-
 export default async function ToolPage({
   params,
 }: {
@@ -39,15 +76,15 @@ export default async function ToolPage({
     where: { slug },
   });
 
-  if (!tool) {
-    return (
-      <main className="container-custom py-20 text-center">
-        <h1 className="text-4xl font-bold">
-          Tool Not Found
-        </h1>
-      </main>
-    );
-  }
+if (!tool) {
+  return (
+    <main className="container-custom py-20 text-center">
+      <h1 className="text-4xl font-bold">
+        Tool Not Found
+      </h1>
+    </main>
+  );
+}
 
   const relatedTools = await prisma.tool.findMany({
     where: {
@@ -64,7 +101,6 @@ export default async function ToolPage({
     `Create an account or choose the available plan.`,
     `Explore the features and start using ${tool.name} for your workflow.`,
   ];
-
   return (
     <main className="container-custom py-16">
 
