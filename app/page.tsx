@@ -109,12 +109,12 @@ return (
 
 
 
-<section className="bg-gradient-to-b from-gray-100 to-white">
+<section className="relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-blue-900 text-white">
 
-<div className="container-custom py-24 text-center">
+<div className="container-custom py-28 text-center">
 
 
-<span className="bg-blue-100 px-5 py-2 rounded-full">
+<span className="inline-block bg-white/10 border border-white/20 px-6 py-2 rounded-full backdrop-blur">
 
 🚀 Discover Next Generation AI Tools
 
@@ -122,21 +122,58 @@ return (
 
 
 
-<h1 className="text-5xl md:text-7xl font-bold mt-8">
+<h1 className="text-5xl md:text-7xl font-extrabold mt-8 leading-tight">
 
-Discover The Best AI Tools In One Place
+Discover The World's Best AI Tools
 
 </h1>
 
 
 
-<p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+<p className="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
 
-AIVerse helps students, developers, creators and businesses
-discover, compare and explore powerful AI tools for coding,
-writing, design, productivity and creativity.
+AIVerse helps students, developers, creators and businesses discover,
+
+compare and use powerful AI tools for productivity, coding,
+
+design, writing and creativity.
 
 </p>
+
+
+
+<div className="mt-10 max-w-2xl mx-auto">
+
+<div className="bg-white rounded-2xl p-2 flex items-center shadow-2xl">
+
+
+<input
+
+type="text"
+
+placeholder="Search AI tools like ChatGPT, Midjourney, Cursor..."
+
+className="flex-1 px-5 py-4 text-black outline-none"
+
+/>
+
+
+<Link
+
+href="/tools"
+
+className="bg-black text-white px-6 py-4 rounded-xl"
+
+>
+
+Search
+
+</Link>
+
+
+</div>
+
+</div>
 
 
 
@@ -147,7 +184,7 @@ writing, design, productivity and creativity.
 
 href="/tools"
 
-className="bg-black text-white px-8 py-4 rounded-xl"
+className="bg-white text-black px-8 py-4 rounded-xl font-semibold hover:scale-105 transition"
 
 >
 
@@ -161,7 +198,7 @@ Explore AI Tools →
 
 href="/submit"
 
-className="border px-8 py-4 rounded-xl"
+className="border border-white/30 px-8 py-4 rounded-xl hover:bg-white/10 transition"
 
 >
 
@@ -176,11 +213,6 @@ Submit Tool
 </div>
 
 </section>
-
-
-
-
-
 <section className="container-custom py-12">
 
 
