@@ -253,7 +253,91 @@ className="border rounded-2xl p-8 text-center"
 
 
 </section>
+<section className="container-custom py-16">
 
+<div className="flex justify-between items-center mb-10">
+
+<h2 className="text-4xl font-bold">
+Featured AI Tools
+</h2>
+
+<Link
+href="/tools"
+className="text-blue-600 font-semibold"
+>
+View All Tools →
+</Link>
+
+</div>
+
+
+<div className="grid md:grid-cols-3 gap-8">
+
+{tools.map((tool)=>(
+
+<div
+key={tool.id}
+className="border rounded-3xl p-6 hover:shadow-xl transition"
+>
+
+<div className="flex items-center gap-4">
+
+<Image
+src={tool.image || "/tools/default.png"}
+alt={tool.name}
+width={70}
+height={70}
+className="rounded-xl"
+/>
+
+<div>
+
+<h3 className="text-xl font-bold">
+{tool.name}
+</h3>
+
+<p className="text-sm text-gray-500">
+{tool.category}
+</p>
+
+</div>
+
+</div>
+
+
+<p className="mt-5 text-gray-600">
+{tool.description}
+</p>
+
+
+<div className="flex justify-between mt-6">
+
+<span>
+⭐ {tool.rating}
+</span>
+
+<span className="bg-gray-100 px-3 py-1 rounded-full text-sm">
+{tool.pricing}
+</span>
+
+</div>
+
+
+<Link
+href={`/tools/${tool.slug}`}
+className="block mt-6 bg-black text-white text-center py-3 rounded-xl"
+>
+View Tool
+</Link>
+
+
+</div>
+
+))}
+
+</div>
+
+</section>
 
 
 
