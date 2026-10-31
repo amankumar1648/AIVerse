@@ -1,27 +1,48 @@
 import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "AIVerse - Discover Best AI Tools, Reviews, Alternatives & Pricing",
+  description:
+    "Discover, compare and explore the best AI tools for students, developers, creators and businesses. Find AI software reviews, features, pricing and alternatives.",
+  keywords: [
+    "AI tools",
+    "best AI tools",
+    "ChatGPT alternatives",
+    "AI software",
+    "AI directory",
+  ],
+  openGraph: {
+    title: "AIVerse - AI Tools Directory",
+    description:
+      "Explore the world's best AI tools in one place.",
+    url: "https://aiverse2.netlify.app",
+    siteName: "AIVerse",
+    type: "website",
+  },
+};
 export const dynamic = "force-dynamic";
 
 
 export default async function Home() {
 
-
-  const tools = await prisma.tool.findMany({
-
-    orderBy:{
-      rating:"desc",
-    },
-
-    take:6,
-
-  });
+const tools = await prisma.tool.findMany({
+  orderBy:{
+    rating:"desc",
+  },
+  take:6,
+});
 
 
-
-  const categories = [
-
+const latestTools = await prisma.tool.findMany({
+  orderBy:{
+    id:"desc",
+  },
+  take:6,
+});
+const categories = [
     {
       name:"AI Assistant",
       slug:"ai-assistant",
@@ -205,7 +226,12 @@ className="border rounded-2xl p-8 text-center"
 
 
 
-<section className="container-custom py-16">
+
+<h2 className="text-3xl font-bold mb-8">
+
+Explore AI Categories
+
+</h2><section className="container-custom py-16">
 
 
 <h2 className="text-3xl font-bold mb-8">
@@ -302,7 +328,95 @@ className="object-contain"
 
 
 
+<section className="container-custom py-16">
 
+<h2 className="text-3xl font-bold mb-8">
+🆕 Latest AI Tools
+</h2>
+
+
+<div className="grid md:grid-cols-3 gap-8">
+
+{latestTools.map((tool)=>(
+
+<Link
+
+key={tool.id}
+
+href={`/tools/${tool.slug}`}
+
+className="border rounded-3xl p-6 hover:shadow-2xl transition"
+
+>
+
+
+<div className="relative w-20 h-20">
+
+<Image
+
+src={tool.image}
+
+alt={tool.name}
+
+fill
+
+className="object-contain"
+
+/>
+
+</div>
+
+
+<h3 className="text-xl font-bold mt-5">
+
+{tool.name}
+
+</h3>
+
+
+<p className="text-gray-500 mt-2">
+
+{tool.category}
+
+</p>
+
+
+<div className="mt-4">
+
+<span className="bg-blue-100 px-3 py-1 rounded-full">
+
+Explore Tool →
+
+</span>
+
+</div>
+
+
+</Link>
+
+))}
+
+</div>
+
+
+<div className="text-center mt-10">
+
+<Link
+
+href="/tools"
+
+className="bg-black text-white px-8 py-4 rounded-xl"
+
+>
+
+View All AI Tools →
+
+</Link>
+
+</div>
+
+
+</section>
 <section className="container-custom py-16">
 
 
@@ -435,7 +549,60 @@ Discover modern AI platforms in one place.
 
 
 
+<section className="container-custom py-20">
 
+<div className="bg-black text-white rounded-3xl p-12 text-center">
+
+
+<h2 className="text-4xl font-bold">
+
+Find The Perfect AI Tool For Your Needs
+
+</h2>
+
+
+<p className="mt-4 text-gray-300 text-lg max-w-2xl mx-auto">
+
+Explore hundreds of AI tools for coding, writing, design, productivity and creativity.
+
+</p>
+
+
+<div className="mt-8 flex justify-center gap-4 flex-wrap">
+
+
+<Link
+
+href="/tools"
+
+className="bg-white text-black px-8 py-4 rounded-xl"
+
+>
+
+Explore All Tools →
+
+</Link>
+
+
+<Link
+
+href="/submit"
+
+className="border border-white px-8 py-4 rounded-xl"
+
+>
+
+Submit Your Tool
+
+</Link>
+
+
+</div>
+
+
+</div>
+
+</section>
 <section className="container-custom py-16">
 
 
@@ -495,5 +662,5 @@ Yes, anyone can submit useful AI tools through AIVerse.
 
 );
 
-}
+};
 
