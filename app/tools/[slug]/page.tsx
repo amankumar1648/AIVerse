@@ -366,9 +366,43 @@ if (!tool) {
         </div>
 
       </section>
-
-      {/* Related Tools */}
-
+      {/* FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": `What is ${tool.name}?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": `${tool.name} is an AI tool that helps users with ${tool.category.toLowerCase()} tasks.`
+                }
+              },
+              {
+                "@type": "Question",
+                "name": `Is ${tool.name} free?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": `${tool.name} pricing model is ${tool.pricing}.`
+                }
+              },
+              {
+                "@type": "Question",
+                "name": `Who should use ${tool.name}?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": tool.bestFor || "Students, creators and professionals can use this AI tool."
+                }
+              }
+            ]
+          })
+        }}
+      />
+{/* Related Tools */}
       <section className="mt-16">
 
         <h2 className="text-3xl font-bold mb-8">
