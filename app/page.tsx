@@ -4,9 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "AIVerse - Discover Best AI Tools, Reviews, Alternatives & Pricing",
+  title: "AIVerse - Best AI Tools Directory | Compare AI Software & Reviews",
   description:
-    "Discover, compare and explore the best AI tools for students, developers, creators and businesses. Find AI software reviews, features, pricing and alternatives.",
+   "Explore the best AI tools for coding, writing, design, productivity and business. Compare AI software features, pricing, ratings and alternatives on AIVerse.",
   keywords: [
     "AI tools",
     "best AI tools",
@@ -22,6 +22,14 @@ export const metadata: Metadata = {
     siteName: "AIVerse",
     type: "website",
   },
+};
+const jsonLd = {
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "name": "AIVerse",
+ "url": "https://aiverse2.netlify.app",
+ "description":
+ "AI tools directory to discover, compare and review the best AI software."
 };
 export const dynamic = "force-dynamic";
 
@@ -106,7 +114,12 @@ const categories = [
 return (
 
 <main>
-
+<script
+ type="application/ld+json"
+ dangerouslySetInnerHTML={{
+ __html: JSON.stringify(jsonLd)
+ }}
+/>
 
 
 <section className="relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-blue-900 text-white">
@@ -392,11 +405,6 @@ View Tool
 </div>
 
 </section>
-
-
-
-
-
 <h2 className="text-3xl font-bold mb-8">
 
 Explore AI Categories
@@ -771,6 +779,20 @@ Submit Your Tool
 
 
 </div>
+
+</section>
+<section className="container-custom py-16">
+
+<h2 className="text-3xl font-bold">
+About AIVerse AI Tools Directory
+</h2>
+
+<p className="mt-5 text-gray-600 text-lg">
+AIVerse helps users discover the latest artificial intelligence tools
+for productivity, education, coding, design, content creation and business.
+Our directory provides AI tool reviews, pricing information, features,
+ratings and alternatives to help users choose the right AI software.
+</p>
 
 </section>
 <section className="container-custom py-16">
