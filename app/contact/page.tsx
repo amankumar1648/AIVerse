@@ -1,5 +1,4 @@
 export default function ContactPage() {
-
   return (
     <main className="container-custom py-16">
 
@@ -10,8 +9,8 @@ export default function ContactPage() {
         </h1>
 
         <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-          Have questions, suggestions or feedback? We would love to
-          hear from you.
+          Have questions, suggestions, corrections or feedback?
+          We would love to hear from you.
         </p>
 
       </section>
@@ -27,47 +26,62 @@ export default function ContactPage() {
           </h2>
 
           <p className="text-gray-700">
-            If you have suggestions for improving AIVerse, want to
-            report incorrect information, or have ideas for new
-            features, please contact us.
+            AIVerse welcomes feedback from users, developers and AI
+            enthusiasts. You can contact us for questions, suggestions,
+            reporting incorrect information or sharing ideas to improve
+            the platform.
           </p>
 
         </div>
 
 
-
         <div className="border rounded-2xl p-8">
 
           <h2 className="text-3xl font-bold mb-4">
-            Email
+            Email Support
           </h2>
 
           <p className="text-gray-700">
-            You can reach us through our official email address:
+            For general questions, feedback and support requests,
+            contact us at:
           </p>
 
           <p className="mt-4 font-semibold">
-           amanchhapola395@gmail.com
+            amanchhapola395@gmail.com
           </p>
 
         </div>
-
 
 
         <div className="border rounded-2xl p-8">
 
           <h2 className="text-3xl font-bold mb-4">
-            Tool Suggestions
+            AI Tool Corrections
           </h2>
 
           <p className="text-gray-700">
-            Found an AI tool that should be listed on AIVerse?
-            You can submit AI tools and help us build a better
-            AI discovery platform.
+            Found outdated information about an AI tool?
+            Let us know about incorrect descriptions, pricing changes,
+            broken links or missing details. We continuously work to
+            improve the accuracy of information available on AIVerse.
           </p>
 
         </div>
 
+
+        <div className="border rounded-2xl p-8">
+
+          <h2 className="text-3xl font-bold mb-4">
+            Tool Submissions
+          </h2>
+
+          <p className="text-gray-700">
+            Developers and AI companies can suggest new tools for
+            inclusion in our directory through the tool submission page.
+            Every submission helps us expand the AIVerse database.
+          </p>
+
+        </div>
 
 
         <div className="border rounded-2xl p-8">
@@ -77,16 +91,16 @@ export default function ContactPage() {
           </h2>
 
           <p className="text-gray-700">
-            AIVerse values user feedback and continuously works to
-            improve the quality and accuracy of information provided
-            on the platform.
+            AIVerse provides information about third-party AI tools.
+            We do not own these services and users should verify the
+            latest features, pricing and availability from official
+            websites.
           </p>
 
         </div>
 
 
       </section>
-
 
     </main>
   );
